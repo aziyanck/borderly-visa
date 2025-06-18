@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borderly Visa - Immigration Services</title>
-    <meta name="description" content="Borderly Visa offers immigration services with integrity, transparency, and professionalism. Founded by Simon Biju and Anshif Rahman.">
-    
+    <meta name="description"
+        content="Borderly Visa offers immigration services with integrity, transparency, and professionalism. Founded by Simon Biju and Anshif Rahman.">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Fonts for a modern look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <script>
         // Customizations for Tailwind CSS
         tailwind.config = {
@@ -32,13 +36,33 @@
         /* Apply custom fonts */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
+            background-color: #f8fafc;
+            /* slate-50 */
         }
-        h1, h2, h3, h4, h5, h6 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Lexend', 'sans-serif';
+        }
+
+        /* Styles for the pop-up */
+        #feature-popup {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        #feature-popup.visible {
+            transform: translateY(0);
+            opacity: 1;
         }
     </style>
 </head>
+
 <body class="text-slate-800">
 
     <!-- Header & Navigation -->
@@ -48,32 +72,38 @@
             <h1 class="text-3xl font-bold text-slate-900">
                 <a href="#">Borderly</a>
             </h1>
-            
+
             <!-- Desktop Nav -->
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#about" class="text-slate-600 hover:text-slate-900 transition-colors">About Us</a>
                 <a href="#features" class="text-slate-600 hover:text-slate-900 transition-colors">Why Choose Us</a>
                 <a href="#contact" class="text-slate-600 hover:text-slate-900 transition-colors">Contact</a>
             </div>
-            <a href="#contact" class="hidden md:block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+            <a href="#contact"
+                class="hidden md:block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors">
                 Get a Consultation
             </a>
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-slate-900 focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
                 </button>
             </div>
         </nav>
-        
+
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white">
             <a href="#about" class="block py-3 px-6 text-sm text-slate-600 hover:bg-slate-50">About Us</a>
             <a href="#features" class="block py-3 px-6 text-sm text-slate-600 hover:bg-slate-50">Why Choose Us</a>
             <a href="#contact" class="block py-3 px-6 text-sm text-slate-600 hover:bg-slate-50">Contact</a>
             <div class="px-6 py-4">
-                <a href="#contact" class="block w-full text-center bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                <a href="#contact"
+                    class="block w-full text-center bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors">
                     Get a Consultation
                 </a>
             </div>
@@ -86,18 +116,23 @@
         <section class="relative h-[50vh] md:h-[60vh] text-white flex items-center justify-center">
             <!-- Background Colored Div -->
             <div class="absolute inset-0 bg-slate-800"></div>
-            
+
             <!-- You can replace the div above with an img tag for a background image like this: -->
             <img src="./src/39330.jpg" alt="Immigration Services" class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black opacity-40"></div> 
+            <div class="absolute inset-0 bg-black opacity-40"></div>
 
             <!-- Content -->
             <div class="relative z-10 text-center px-6">
                 <h2 class="text-4xl md:text-6xl font-bold leading-tight">Bringing Integrity & Transparency</h2>
-                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto">Built on trust integrity and transparency, we provide the best visa consultancy service in india.</p>
+                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto">Built on trust integrity transparency, and a
+                    seemles client experience, we provide the best visa consultancy service in india.</p>
                 <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#about" class="bg-white text-slate-900 font-semibold px-8 py-3 rounded-lg hover:bg-slate-200 transition-colors">Learn More</a>
-                    <a href="#contact" class="bg-transparent text-white font-semibold px-8 py-3 rounded-lg border border-white hover:bg-white hover:text-slate-900 transition-colors">Contact Us</a>
+                    <a href="#about"
+                        class="bg-white text-slate-900 font-semibold px-8 py-3 rounded-lg hover:bg-slate-200 transition-colors">Learn
+                        More</a>
+                    <a href="#contact"
+                        class="bg-transparent text-white font-semibold px-8 py-3 rounded-lg border border-white hover:bg-white hover:text-slate-900 transition-colors">Contact
+                        Us</a>
                 </div>
             </div>
         </section>
@@ -105,7 +140,8 @@
         <div class="container mx-auto px-6">
             <!-- Stats Counter Section -->
             <section class="bg-white rounded-xl shadow-md mt-16 md:mt-24 relative z-10">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 lg:divide-x divide-slate-200">
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 lg:divide-x divide-slate-200">
                     <div class="p-6 text-center">
                         <h3 class="text-3xl font-bold text-slate-900 counter">1000+</h3>
                         <p class="mt-2 text-slate-500 font-medium text-sm uppercase">Success Stories</p>
@@ -134,17 +170,33 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <span class="text-sm font-semibold text-slate-500 uppercase">Our Mission</span>
-                        <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">A Better Alternative for Immigration Support</h2>
+                        <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">A Better Alternative for
+                            Immigration Support</h2>
                         <p class="mt-4 text-slate-600 leading-relaxed">
-                            Our team at Borderly Visa has only one mission: to bring integrity, transparency, and professionalism to the immigration services industry.
+                            Our team at Borderly Visa has only one mission: to bring integrity, transparency, and
+                            professionalism to the immigration services industry.
                         </p>
                         <p class="mt-4 text-slate-600 leading-relaxed">
-                            Frustrated by the lack of genuine support and the pressure-driven sales tactics common in the industry, we decided it was time for a change. Borderly was created to offer a better alternative — one built on trust, expertise, and a seamless client experience.
+                            Frustrated by the lack of genuine support and the pressure-driven sales tactics common in
+                            the industry, we decided it was time for a change. Borderly was created to offer a better
+                            alternative — one built on trust, expertise, and a seamless client experience.
                         </p>
                     </div>
-                     <div>
+                    <div>
                         <div class="bg-white p-8 rounded-xl shadow-lg">
-                           
+                            <h3 class="text-2xl font-bold text-slate-900">The Founders' Journey</h3>
+                            <p class="mt-4 text-slate-600">
+                                <strong>Anshif</strong> began his journey by helping friends with student visas, which
+                                grew into a successful freelance practice.
+                            </p>
+                            <p class="mt-4 text-slate-600">
+                                <strong>Simon</strong>, a law school graduate, gained valuable insights at a leading
+                                immigration law firm, witnessing the systemic issues clients face.
+                            </p>
+                            <p class="mt-4 text-slate-600 font-semibold">
+                                Together, we combined our knowledge and experience to launch Borderly — a modern
+                                platform for honest guidance and stress-free documentation.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -152,27 +204,31 @@
 
             <!-- Features Section -->
             <section id="features" class="py-24 md:py-20 bg-slate-100 rounded-2xl">
-                 <div class="text-center">
+                <div class="text-center">
                     <span class="text-sm font-semibold text-slate-500 uppercase">WHY CHOOSE US</span>
                     <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">A Client-First Approach</h2>
-                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">We're committed to helping individuals and families achieve their immigration goals with clarity and confidence.</p>
+                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">We're committed to helping individuals and families
+                        achieve their immigration and non-immigration needs with clarity and confidence.</p>
                 </div>
                 <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-white p-6 rounded-lg m-4 shadow-sm">
                         <h3 class="text-lg font-bold text-slate-900">Experienced Documentation Team</h3>
-                        <p class="mt-2 text-slate-600">Our meticulous team ensures your application is accurate and complete, minimizing delays and risks.</p>
+                        <p class="mt-2 text-slate-600">Our meticulous team ensures your application is accurate and
+                            complete, minimizing delays and risks.</p>
                     </div>
                     <div class="bg-white p-6 rounded-lg m-4 shadow-sm">
                         <h3 class="text-lg font-bold text-slate-900">Dedicated B2B Relationship Manager</h3>
-                        <p class="mt-2 text-slate-600">Partners get a dedicated manager for streamlined communication and consistent support.</p>
+                        <p class="mt-2 text-slate-600">Partners get a dedicated manager for streamlined communication
+                            and consistent support.</p>
                     </div>
                     <div class="bg-white p-6 rounded-lg m-4 shadow-sm">
                         <h3 class="text-lg font-bold text-slate-900">Personal Case Officer</h3>
-                        <p class="mt-2 text-slate-600">Each individual client is assigned a personal case officer to guide them from start to finish.</p>
+                        <p class="mt-2 text-slate-600">Each individual client is assigned a personal case officer to
+                            guide them from start to finish.</p>
                     </div>
                 </div>
             </section>
-            
+
             <!-- Contact Section -->
             <section id="contact" class="py-24 md:py-32">
                 <div class="grid md:grid-cols-2 gap-12 items-start">
@@ -180,29 +236,33 @@
                         <span class="text-sm font-semibold text-slate-500 uppercase">Get in Touch</span>
                         <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">Contact Us</h2>
                         <p class="mt-4 text-slate-600 leading-relaxed">
-                            Ready to start your immigration journey? Reach out to us for an expert consultation. We're here to provide honest guidance and support.
+                            Ready to start your immigration journey? Reach out to us for an expert consultation. We're
+                            here to provide honest guidance and support.
                         </p>
                         <div class="mt-8 space-y-4">
                             <div class="flex items-start gap-4">
                                 <!-- Location Icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-slate-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
                                 <div>
                                     <h3 class="font-semibold text-slate-900">Our Office</h3>
-                                    <p class="text-slate-600">Opposite Padamughal Juma Masjid<br>Civil Line Road, Padamugal - Palachuvadu Rd<br>Kakkanad, Kerala 682021</p>
+                                    <p class="text-slate-600">Opposite Padamughal Juma Masjid<br>Civil Line Road,
+                                        Padamugal - Palachuvadu Rd<br>Kakkanad, Kerala 682021</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="bg-white p-8 rounded-xl shadow-lg">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.980620241031!2d76.3409470153351!3d10.01918389283738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d7c2a7a5f3d%3A0x7c7a52e1f5f5f5f5!2sPadamugal%20Juma%20Masjid!5e0!3m2!1sen!2sin!4v1676295325871!5m2!1sen!2sin" 
-                            width="100%" 
-                            height="350" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            class="rounded-lg">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.980620241031!2d76.3409470153351!3d10.01918389283738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d7c2a7a5f3d%3A0x7c7a52e1f5f5f5f5!2sPadamugal%20Juma%20Masjid!5e0!3m2!1sen!2sin!4v1676295325871!5m2!1sen!2sin"
+                            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" class="rounded-lg">
                         </iframe>
                     </div>
                 </div>
@@ -225,19 +285,41 @@
 
     <!-- Floating WhatsApp Button -->
     <div class="fixed bottom-6 right-6 z-50">
-        <a href="https://wa.me/9048955437" target="_blank" rel="noopener noreferrer" class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
+        <a href="https://wa.me/9447673262" target="_blank" rel="noopener noreferrer"
+            class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
             <!-- WhatsApp Icon SVG -->
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                <path
+                    d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
             </svg>
         </a>
     </div>
 
+    <!-- Scroll-triggered Pop-up -->
+    <div id="feature-popup" class="fixed bottom-6 left-6 z-50 bg-white p-8 rounded-lg shadow-2xl max-w-md hidden">
+        <button id="close-popup" class="absolute top-3 right-3 text-slate-400 hover:text-slate-800">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <h4 class="text-lg font-bold text-slate-900 mb-3 tracking-wide">What are you looking for?</h4>
+        <ul class="space-y-2 text-slate-700 list-disc list-inside">
+            <li class="hover:text-blue-600 cursor-pointer"><span>Visit visa</span></li>
+            <li class="hover:text-blue-600 cursor-pointer"><span>Permanent residency</span></li>
+            <li class="hover:text-blue-600 cursor-pointer"><span>Student visa</span></li>
+            <li class="hover:text-blue-600 cursor-pointer"><span>Training visa</span></li>
+            <li class="hover:text-blue-600 cursor-pointer"><span>Opportunity card</span></li>
+        </ul>
+    </div>
+
+
     <!-- CounterUp2 JS from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/counterup2@2.0.2/dist/index.min.js"></script>
-    
+
     <!-- Link to your external script file -->
     <script src="./script.js"></script>
 
 </body>
+
 </html>
