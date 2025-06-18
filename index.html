@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borderly Visa - Immigration Services</title>
+    <meta name="description" content="Borderly Visa offers immigration services with integrity, transparency, and professionalism. Founded by Simon Biju and Anshif Rahman.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        // Customizations for Tailwind CSS
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Apply custom fonts */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lexend', 'sans-serif';
+        }
+        /* Simple animation for the loader */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loader {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #2563eb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <h1 class="text-3xl font-bold text-slate-900">
+                <a href="#">Borderly</a>
+            </h1>
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-slate-600 hover:text-slate-900 transition-colors">About Us</a>
+                <a href="#features" class="text-slate-600 hover:text-slate-900 transition-colors">Why Choose Us</a>
+                <a href="#ai-finder" class="text-slate-600 hover:text-slate-900 transition-colors">AI Pathway Finder</a>
+                <a href="#contact" class="text-slate-600 hover:text-slate-900 transition-colors">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                Get a Consultation
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-slate-900 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="#about" class="block py-3 px-6 text-sm text-slate-600 hover:bg-slate-50">About Us</a>
+            <a href="#features" class="block py-3 px-6 text-sm text-slate-600 hover:bg-slate-50">Why Choose Us</a>
+            <a href="#ai-finder" class="block py-3 px-6 text-sm text-slate-600 hover:bg-slate-50">AI Pathway Finder</a>
+            <a href="#contact" class="block py-3 px-6 text-sm text-slate-600 hover:bg-slate-50">Contact</a>
+            <div class="px-6 py-4">
+                <a href="#contact" class="block w-full text-center bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                    Get a Consultation
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6">
+        <!-- Hero Section -->
+        <section class="text-center py-20 md:py-32">
+            <h2 class="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">Bringing Integrity & Transparency</h2>
+            <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">to the immigration services industry. A modern platform built on trust, expertise, and a seamless client experience.</p>
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="#about" class="bg-slate-900 text-white font-semibold px-8 py-3 rounded-lg hover:bg-slate-700 transition-colors">Learn More</a>
+                <a href="#contact" class="bg-white text-slate-900 font-semibold px-8 py-3 rounded-lg border border-slate-300 hover:bg-slate-100 transition-colors">Contact Us</a>
+            </div>
+        </section>
+
+        <!-- Stats Counter Section -->
+        <section class="bg-white rounded-xl shadow-md -mt-16 md:-mt-24 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+                <div class="p-8 text-center">
+                    <h3 class="text-4xl font-bold text-slate-900 counter">10000+</h3>
+                    <p class="mt-2 text-slate-500 font-medium">Visas Processed</p>
+                </div>
+                <div class="p-8 text-center">
+                    <h3 class="text-4xl font-bold text-slate-900">Expert</h3>
+                    <p class="mt-2 text-slate-500 font-medium">Consultation</p>
+                </div>
+                <div class="p-8 text-center">
+                    <h3 class="text-4xl font-bold text-slate-900">Error-Free</h3>
+                    <p class="mt-2 text-slate-500 font-medium">Process</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-24 md:py-32">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-sm font-semibold text-slate-500 uppercase">Our Mission</span>
+                    <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">A Better Alternative for Immigration Support</h2>
+                    <p class="mt-4 text-slate-600 leading-relaxed">
+                        Borderly Visa was founded by <strong>Simon Biju</strong> and <strong>Anshif Rahman</strong> — two young entrepreneurs and immigration professionals with a shared mission: to bring integrity, transparency, and professionalism to the immigration services industry.
+                    </p>
+                    <p class="mt-4 text-slate-600 leading-relaxed">
+                        Frustrated by the lack of genuine support and the pressure-driven sales tactics common in the industry, we decided it was time for a change. Borderly was created to offer a better alternative — one built on trust, expertise, and a seamless client experience.
+                    </p>
+                </div>
+                 <div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900">The Founders' Journey</h3>
+                        <p class="mt-4 text-slate-600">
+                            <strong>Anshif</strong> began his journey by helping friends with student visas, which grew into a successful freelance practice.
+                        </p>
+                         <p class="mt-4 text-slate-600">
+                            <strong>Simon</strong>, a law school graduate, gained valuable insights at a leading immigration law firm, witnessing the systemic issues clients face.
+                        </p>
+                        <p class="mt-4 text-slate-600 font-semibold">
+                            Together, we combined our knowledge and experience to launch Borderly — a modern platform for honest guidance and stress-free documentation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-24 md:py-20 bg-slate-100 rounded-2xl">
+             <div class="text-center">
+                <span class="text-sm font-semibold text-slate-500 uppercase">WHY CHOOSE US</span>
+                <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">A Client-First Approach</h2>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto">We're committed to helping individuals and families achieve their immigration goals with clarity and confidence.</p>
+            </div>
+            <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900">Experienced Documentation Team</h3>
+                    <p class="mt-2 text-slate-600">Our meticulous team ensures your application is accurate and complete, minimizing delays and risks.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900">Dedicated B2B Relationship Manager</h3>
+                    <p class="mt-2 text-slate-600">Partners get a dedicated manager for streamlined communication and consistent support.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900">Personal Case Officer</h3>
+                    <p class="mt-2 text-slate-600">Each individual client is assigned a personal case officer to guide them from start to finish.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 md:py-32">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <span class="text-sm font-semibold text-slate-500 uppercase">Get in Touch</span>
+                    <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">Contact Us</h2>
+                    <p class="mt-4 text-slate-600 leading-relaxed">
+                        Ready to start your immigration journey? Reach out to us for an expert consultation. We're here to provide honest guidance and support.
+                    </p>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <!-- Location Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <div>
+                                <h3 class="font-semibold text-slate-900">Our Office</h3>
+                                <p class="text-slate-600">Opposite Padamughal Juma Masjid<br>Civil Line Road, Padamugal - Palachuvadu Rd<br>Kakkanad, Kerala 682021</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.980620241031!2d76.3409470153351!3d10.01918389283738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d7c2a7a5f3d%3A0x7c7a52e1f5f5f5f5!2sPadamugal%20Juma%20Masjid!5e0!3m2!1sen!2sin!4v1676295325871!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="350" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="rounded-lg">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h2 class="text-2xl font-bold text-white">Borderly</h2>
+            <div class="mt-6 flex justify-center space-x-6">
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#features" class="hover:text-white transition-colors">Features</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            </div>
+            <p class="mt-8 text-sm text-slate-400">&copy; 2025 Borderly Visa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- CounterUp2 JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/counterup2@2.0.2/dist/index.min.js"></script>
+    
+    <!-- Link to your external script file -->
+    <script src="./script.js"></script>
+
+</body>
+</html>
