@@ -7,7 +7,7 @@
     <title>Borderly Visa - Immigration Services</title>
     <meta name="description"
         content="Borderly Visa offers immigration services with integrity, transparency, and professionalism. Founded by Simon Biju and Anshif Rahman.">
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -19,7 +19,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="/style.css">
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Customizations for Tailwind CSS
         tailwind.config = {
@@ -32,6 +32,13 @@
                 }
             }
         }
+
+        AOS.init({
+            offset: 120,  // offset (in px) from the original trigger point
+            duration: 600, // animation duration in ms
+            easing: 'ease-in-out', // easing option
+            once: true, // whether animation should happen only once
+        });
     </script>
 
     <style>
@@ -376,7 +383,8 @@
     <!-- Floating WhatsApp Button -->
     <div class="fixed bottom-6 right-6 z-50">
         <a href="https://wa.me/9447673262" target="_blank" rel="noopener noreferrer"
-            class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
+            class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110 animate-bounce-slow">
+
             <!-- WhatsApp Icon SVG -->
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                 <path
