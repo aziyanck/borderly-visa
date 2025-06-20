@@ -12,7 +12,5 @@
   "devDependencies": {
     "tailwindcss": "^4.1.10"
   },
-  "dependencies": {
-    "counterup2": "^2.0.2"
-  }
+  "dependencies": {}
 }
