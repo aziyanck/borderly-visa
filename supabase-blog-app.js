@@ -289,7 +289,6 @@ async function saveBlogPost(isPublished) {
 }
 
 // --- Frontend Blog Display Logic (for blog.html) ---
-
 async function fetchAndDisplayBlogPosts() {
   const blogContainer = document.getElementById("blog-posts-container")
   console.log("Checking for blog container:", blogContainer) // Debugging line
@@ -400,3 +399,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // AOS.init for index.html is in its own script tag in index.html's head
   }
 })
+
+export default supabase
