@@ -1,14 +1,14 @@
 import supabase from "./supabase-blog-app.js";
 
 async function initializeCarousel() {
-    console.log("Initializing carousel...");
+     
     const container = document.getElementById("carousel")
 
     const { data: blogs, error } = await supabase
         .from("blogs")
         .select()
-        .eq("published", true) // Only fetch published posts for the frontend
-        .order("created_at", { ascending: false }) // Order by newest first
+        .eq("published", true) 
+        .order("created_at", { ascending: false }) 
 
     if (error) {
         console.error("Error fetching blogs:", error);
@@ -20,20 +20,18 @@ async function initializeCarousel() {
         container.innerHTML = `<p class="text-slate-500">No Blogs</p>`
         return
     }
-console.log("Fetched blogs front:", blogs)
+ 
     blogs.forEach(blog => {
         const blogCard = document.createElement("div")
         blogCard.classList.add("flex-shrink-0", "w-80", "bg-white", "rounded-xl", "shadow-lg", "overflow-hidden")
 
-        // --- Helper function to parse content ---
     const parseContent = (htmlString) => {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = htmlString;
         
         const imageElement = tempDiv.querySelector('img');
-        const imageUrl = imageElement ? imageElement.src : 'https://placehold.co/600x400'; // Fallback
+        const imageUrl = imageElement ? imageElement.src : 'https://placehold.co/600x400'; 
         
-        // Get text content without HTML tags
         const textContent = tempDiv.textContent || ""; 
         
         return { imageUrl, textContent };

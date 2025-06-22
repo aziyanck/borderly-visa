@@ -5,11 +5,9 @@ const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5rcGZqYnBrY3FjYmZndmNidGdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA0MTI1ODMsImV4cCI6MjA2NTk4ODU4M30.lneP7rlhOMDT2D3rtHUMC9sUqOigMNEPHAx7lDWkYZI" // Paste your anon public key here
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-console.log("Supabase client initialized with URL:", SUPABASE_URL)
+ 
 
-// --- General UI Elements & Helper Functions ---
 
-// Function to display messages (e.g., success, error) to the user
 function displayMessage(elementId, message, isError = false) {
   const messageElement = document.getElementById(elementId)
   if (messageElement) {
@@ -20,31 +18,27 @@ function displayMessage(elementId, message, isError = false) {
     } else {
       messageElement.classList.add("text-green-500")
     }
-    // console.log(`Displaying message for ${elementId}: ${message}`); // Debugging line
     setTimeout(() => {
       if (messageElement) {
-        // Check if element still exists before trying to clear
         messageElement.classList.add("hidden")
         messageElement.textContent = ""
       }
-    }, 5000) // Hide message after 5 seconds
+    }, 5000) 
   }
 }
 
-// Function to redirect to a new URL
 function redirectTo(path) {
   window.location.href = path
 }
 
-// --- Supabase Authentication Logic (for admin.html and editor.html) ---
 
 async function handleLogin(event) {
-  event.preventDefault() // Prevent default form submission
+  event.preventDefault() 
 
   const emailInput = document.getElementById("email")
   const passwordInput = document.getElementById("password")
   const loginMessage = document.getElementById("login-message")
-  const loginButton = event.submitter // Get the button that triggered the submit
+  const loginButton = event.submitter 
 
   if (!emailInput || !passwordInput || !loginMessage || !loginButton) {
     console.error("Login form elements not found. Cannot proceed with login.")
@@ -63,31 +57,29 @@ async function handleLogin(event) {
     return
   }
 
-  loginButton.disabled = true // Disable button to prevent multiple clicks
+  loginButton.disabled = true 
   loginButton.textContent = "Logging In..."
   displayMessage("login-message", "Attempting to log in...")
 
   try {
-    // Sign in the user with Supabase
+  
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     })
 
     if (error) {
-      console.error("Supabase Login error:", error) // Log the full error object
+      console.error("Supabase Login error:", error) 
       displayMessage(
         "login-message",
         `Login failed: ${error.message}. Please check your credentials.`,
         true,
       )
     } else if (data.user) {
-      console.log("User logged in successfully:", data.user)
+       
       displayMessage("login-message", "Login successful! Redirecting...", false)
-      // Redirect to the editor page after successful login
       redirectTo("/admin/editor.html")
     } else {
-      // This case should ideally be caught by error, but as a fallback
       console.warn("Login returned no user or error:", data)
       displayMessage(
         "login-message",
@@ -103,32 +95,29 @@ async function handleLogin(event) {
       true,
     )
   } finally {
-    loginButton.disabled = false // Re-enable button
+    loginButton.disabled = false 
     loginButton.textContent = "Log In"
   }
 }
 
 async function handleLogout() {
-  console.log("Attempting to log out...")
+   
   const { error } = await supabase.auth.signOut()
 
   if (error) {
     console.error("Supabase Logout error:", error.message)
-    alert("Failed to log out. Please try again.") // Simple alert for now
+    alert("Failed to log out. Please try again.") 
   } else {
-    console.log("User logged out successfully.")
-    // Redirect to the login page after logout
+     
     redirectTo("/")
   }
 }
 
-// --- Quill Editor Logic & Blog Management (for editor.html) ---
 
-let quill // Declare quill globally for editor.html to access
+let quill 
 
 async function initializeEditorPage() {
-  console.log("Initializing editor page...")
-  // Check if the user is authenticated
+   
   const {
     data: { session },
     error: sessionError,
@@ -141,39 +130,36 @@ async function initializeEditorPage() {
   }
 
   if (!session) {
-    console.log("No active session found. Redirecting to login.")
-    // If no session, redirect to login page
+     
     redirectTo("/admin/admin.html")
     return
   }
-  console.log("User session found:", session.user.email)
+   
 
-  // Initialize Quill editor once authentication is confirmed
   quill = new Quill("#editor-container", {
-    theme: "snow", // 'snow' or 'bubble'
+    theme: "snow", 
     placeholder: "Write your blog content here...",
     modules: {
       toolbar: [
-        ["bold", "italic", "underline", "strike"], // toggled buttons
+        ["bold", "italic", "underline", "strike"], 
         ["blockquote", "code-block"],
-        [{ header: 1 }, { header: 2 }], // custom button values
+        [{ header: 1 }, { header: 2 }], 
         [{ list: "ordered" }, { list: "bullet" }],
-        [{ script: "sub" }, { script: "super" }], // superscript/subscript
-        [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-        [{ direction: "rtl" }], // text direction
-        [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+        [{ script: "sub" }, { script: "super" }],
+        [{ indent: "-1" }, { indent: "+1" }], 
+        [{ direction: "rtl" }], 
+        [{ size: ["small", false, "large", "huge"] }], 
         [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+        [{ color: [] }, { background: [] }], 
         [{ font: [] }],
         [{ align: [] }],
-        ["link", "image", "video"], // link, image, video
-        ["clean"], // remove formatting button
+        ["link", "image", "video"], 
+        ["clean"], 
       ],
     },
   })
-  console.log("Quill editor initialized.")
+   
 
-  // Event listeners for Save Draft and Publish buttons
   document
     .getElementById("save-draft-button")
     ?.addEventListener("click", () => saveBlogPost(false))
@@ -198,7 +184,6 @@ async function saveBlogPost(isPublished) {
   }
 
   const title = titleInput.value.trim()
-  // Check if the Quill editor instance exists before accessing its methods
   const content = quill ? quill.root.innerHTML : ""
 
   if (!title) {
@@ -206,7 +191,6 @@ async function saveBlogPost(isPublished) {
     return
   }
 
-    // Simpler check: if the text content is empty AND there are no embeds (like images/videos)
     if (
       quill.getText().trim() === "" &&
       quill.getContents().filter((op) => typeof op.insert === "object")
@@ -223,7 +207,6 @@ async function saveBlogPost(isPublished) {
     `Saving blog post as ${isPublished ? "published" : "draft"}...`,
   )
 
-  // Get the current user's ID
   const {
     data: { user },
     error: userError,
@@ -255,7 +238,7 @@ async function saveBlogPost(isPublished) {
           },
         ],
         { returning: "minimal" },
-      ) // 'minimal' for better performance
+      ) 
 
     if (error) {
       console.error("Error saving blog post to Supabase:", error)
@@ -265,15 +248,14 @@ async function saveBlogPost(isPublished) {
         true,
       )
     } else {
-      console.log("Blog post saved successfully.")
+       
       displayMessage(
         "editor-message",
         `Blog post ${isPublished ? "published" : "saved as draft"} successfully!`,
         false,
       )
-      // Clear the form after successful save
       titleInput.value = ""
-      quill.setContents([]) // Clear Quill editor
+      quill.setContents([]) 
     }
   } catch (unexpectedError) {
     console.error("Unexpected error during blog save:", unexpectedError)
@@ -288,28 +270,27 @@ async function saveBlogPost(isPublished) {
   }
 }
 
-// --- Frontend Blog Display Logic (for blog.html) ---
 async function fetchAndDisplayBlogPosts() {
   const blogContainer = document.getElementById("blog-posts-container")
-  console.log("Checking for blog container:", blogContainer) // Debugging line
+   
   if (!blogContainer) {
-    console.log("Blog container not found, exiting fetchAndDisplayBlogPosts.")
-    return // Exit if container doesn't exist on this page
+     
+    return
   }
 
-  // Set initial loading message
+  
   blogContainer.innerHTML = `
         <div class="col-span-full p-6 bg-white rounded-lg shadow-md flex items-center justify-center">
             <p class="text-slate-500">Loading blog posts...</p>
         </div>
     `
-  console.log("Attempting to fetch blog posts for frontend display...")
+   
 
   const { data: blogs, error } = await supabase
     .from("blogs")
     .select()
-    .eq("published", true) // Only fetch published posts for the frontend
-    .order("created_at", { ascending: false }) // Order by newest first
+    .eq("published", true)
+    .order("created_at", { ascending: false })
 
   if (error) {
     console.error("Error fetching blog posts for frontend:", error)
@@ -319,21 +300,21 @@ async function fetchAndDisplayBlogPosts() {
   }
 
   if (blogs.length === 0) {
-    console.log("No published blog posts found.")
+     
     blogContainer.innerHTML =
       '<div class="col-span-full text-center py-8 text-slate-500">No blog posts published yet.</div>'
     return
   }
 
-  console.log("Fetched blog posts:", blogs)
-  blogContainer.innerHTML = "" // Clear loading message
+   
+  blogContainer.innerHTML = "" 
 
   blogs.forEach((blog) => {
     const blogPostElement = document.createElement("div")
     blogPostElement.classList.add("bg-white", "p-6", "rounded-lg", "shadow-md")
-    blogPostElement.setAttribute("data-aos", "fade-up") // Add AOS animation
+    blogPostElement.setAttribute("data-aos", "fade-up") 
 
-    // Format date nicely
+  
     const postDate = new Date(blog.created_at).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
@@ -347,30 +328,25 @@ async function fetchAndDisplayBlogPosts() {
         `
     blogContainer.appendChild(blogPostElement)
   })
-  AOS.refresh() // Refresh AOS to pick up new elements
+  AOS.refresh() 
 }
 
-// --- Event Listeners based on current page ---
 
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname
-  console.log("DOMContentLoaded - Current path:", currentPath)
+   
 
   if (currentPath.includes("/admin.html")) {
-    // This is the admin login page
-    console.log("On admin.html - attaching login form listener.")
+     
     document
       .getElementById("login-form")
       ?.addEventListener("submit", handleLogin)
   } else if (currentPath.includes("/admin/editor.html")) {
-    // This is the admin editor page
-    console.log("On editor.html - initializing editor page.")
+     
     initializeEditorPage()
   } else if (currentPath.includes("/blog.html")) {
-    // This is the frontend blog display page
-    console.log("On blog.html - fetching and displaying blog posts.")
+     
     AOS.init({
-      // Initialize AOS for blog.html specifically here
       offset: 120,
       duration: 600,
       easing: "ease-in-out",
@@ -378,9 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     fetchAndDisplayBlogPosts()
   } else {
-    // This is the main index.html page
-    console.log("On index.html - attaching mobile menu listeners.")
-    // Existing mobile menu logic (from your original script.js)
+     
     const mobileMenuButton = document.getElementById("mobile-menu-button")
     const mobileMenu = document.getElementById("mobile-menu")
     const mobileMenuLinks = mobileMenu?.querySelectorAll("a")
@@ -396,7 +370,6 @@ document.addEventListener("DOMContentLoaded", () => {
         mobileMenu?.classList.add("hidden")
       })
     })
-    // AOS.init for index.html is in its own script tag in index.html's head
   }
 })
 

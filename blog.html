@@ -29,7 +29,6 @@
           },
         },
       }
-      // AOS.init() call removed from here, will be handled by supabase-blog-app.js
     </script>
     <style>
       body {
@@ -45,9 +44,6 @@
       h6 {
         font-family: "Lexend", "sans-serif";
       }
-
-      /* Basic styling for Quill content if @tailwindcss/typography is not used */
-      /* These styles are also in style.css, keeping them here for direct visibility */
       .prose h1,
       .prose h2,
       .prose h3,
@@ -59,7 +55,7 @@
         margin-bottom: 0.5em;
         line-height: 1.2;
         font-weight: 700;
-        color: #1a202c; /* slate-900 */
+        color: #1a202c; 
       }
       .prose h1 {
         font-size: 2.25em;
@@ -74,7 +70,7 @@
         margin-top: 1em;
         margin-bottom: 1em;
         line-height: 1.75;
-        color: #4a5568; /* slate-700 */
+        color: #4a5568; 
       }
       .prose strong {
         font-weight: 700;
@@ -87,7 +83,7 @@
         margin-top: 1em;
         margin-bottom: 1em;
         padding-left: 1.5em;
-        list-style-type: disc; /* Default for ul */
+        list-style-type: disc;
       }
       .prose ol {
         list-style-type: decimal; /* Default for ol */
@@ -195,7 +191,7 @@
 
         <!-- Mobile Menu Button -->
         <div class="md:hidden">
-          <button
+          <button 
             id="mobile-menu-button"
             class="text-slate-900 focus:outline-none"
           >
@@ -269,7 +265,6 @@
         id="blog-posts-container"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
-        <!-- Blog posts will be loaded here by JavaScript -->
         <div
           class="col-span-full p-6 bg-white rounded-lg shadow-md flex items-center justify-center"
         >
@@ -278,7 +273,6 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-slate-900 text-slate-300">
       <div class="container mx-auto px-6 py-12 text-center">
         <h2 class="text-2xl font-bold text-white">Borderly</h2>
@@ -300,7 +294,7 @@
       </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
+    <!-- Floating wp button -->
     <div class="fixed bottom-6 right-6 z-50">
       <a
         href="https://wa.me/9447673262"

@@ -13,7 +13,7 @@
     />
     <link rel="stylesheet" href="/style.css" />
 
-    <!-- Quill CSS -->
+    
     <link
       href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
       rel="stylesheet"
@@ -46,21 +46,21 @@
         font-family: "Lexend", "sans-serif";
       }
 
-      /* Adjust Quill editor height */
+     
       #editor-container {
-        height: 400px; /* Adjust as needed */
+        height: 400px; 
         background-color: white;
         border-bottom-left-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
       }
-      /* Styling for Quill's toolbar to match Tailwind */
+      
       .ql-toolbar.ql-snow {
         border-top-left-radius: 0.5rem;
         border-top-right-radius: 0.5rem;
-        border-color: #e2e8f0; /* slate-200 */
+        border-color: #e2e8f0; 
       }
       .ql-container.ql-snow {
-        border-color: #e2e8f0; /* slate-200 */
+        border-color: #e2e8f0; 
         border-bottom-left-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
       }
@@ -136,15 +136,11 @@
       </section>
     </main>
 
-    <!-- Quill JS -->
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-    <!-- Supabase JS Client Library and our custom app logic -->
     <script type="module" src="../supabase-blog-app.js"></script>
-    <!-- Corrected path -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({
-        // Initialize AOS for editor.html specifically here
         offset: 120,
         duration: 600,
         easing: "ease-in-out",
