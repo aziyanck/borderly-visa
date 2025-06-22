@@ -1,11 +1,6 @@
-// supabase-blog-app.js
-
-// Import Supabase client library
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
 
-// IMPORTANT: Replace with your actual Supabase project URL and Anon Key
-// You can find these in your Supabase project settings -> API
-const SUPABASE_URL = "https://nkpfjbpkcqcbfgvcbtgh.supabase.co" // Paste your Project URL here
+const SUPABASE_URL = "https://nkpfjbpkcqcbfgvcbtgh.supabase.co"
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5rcGZqYnBrY3FjYmZndmNidGdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA0MTI1ODMsImV4cCI6MjA2NTk4ODU4M30.lneP7rlhOMDT2D3rtHUMC9sUqOigMNEPHAx7lDWkYZI" // Paste your anon public key here
 
@@ -123,7 +118,7 @@ async function handleLogout() {
   } else {
     console.log("User logged out successfully.")
     // Redirect to the login page after logout
-    redirectTo("/admin.html")
+    redirectTo("/")
   }
 }
 
@@ -141,14 +136,14 @@ async function initializeEditorPage() {
 
   if (sessionError) {
     console.error("Error fetching session:", sessionError.message)
-    redirectTo("/admin.html")
+    redirectTo("/admin/admin.html")
     return
   }
 
   if (!session) {
     console.log("No active session found. Redirecting to login.")
     // If no session, redirect to login page
-    redirectTo("/admin.html")
+    redirectTo("/admin/admin.html")
     return
   }
   console.log("User session found:", session.user.email)
@@ -211,28 +206,6 @@ async function saveBlogPost(isPublished) {
     return
   }
 
-  // Check if editor content is empty (excluding just whitespace or only images)
-  // quill.getContents().length === 1 && quill.getContents().ops[0].insert === '\n' means only a newline char
-  if (
-    !quill ||
-    (quill.getText().trim() === "" &&
-      !quill
-        .getContents()
-        .some(
-          (item) =>
-            item.insert &&
-            typeof item.insert === "object" &&
-            !item.insert.image,
-        ))
-  ) {
-    // This condition now correctly checks for empty text and non-image objects
-    // If there's only an image, quill.getText() would be empty.
-    // The check `!quill.getContents().some(item => item.insert && (typeof item.insert === 'object' && !item.insert.image))`
-    // ensures that if the content is JUST an image, it's still considered valid.
-    // We're looking for content that isn't just an image or empty text.
-    // A more robust check might be `quill.getContents().length <= 1 && quill.getContents().ops[0].insert === '\n'` for truly empty.
-    // For simplicity, let's just make sure there's *something* in the content or text.
-
     // Simpler check: if the text content is empty AND there are no embeds (like images/videos)
     if (
       quill.getText().trim() === "" &&
@@ -242,8 +215,7 @@ async function saveBlogPost(isPublished) {
       displayMessage("editor-message", "Blog content cannot be empty.", true)
       return
     }
-  }
-
+  
   saveButton.disabled = true
   saveButton.textContent = isPublished ? "Publishing..." : "Saving Draft..."
   displayMessage(
@@ -266,24 +238,24 @@ async function saveBlogPost(isPublished) {
       "User not authenticated. Please log in again.",
       true,
     )
-    redirectTo("/admin.html")
+    redirectTo("/admin/admin.html")
     return
   }
 
   try {
     const { data, error } = await supabase
-      .from("blogs") // Your Supabase table name for blogs
+      .from("blogs")
       .insert(
         [
           {
             title: title,
             content: content,
             published: isPublished,
-            author_id: user.id, // Store the author's ID
+            author_id: user.id,
           },
         ],
         { returning: "minimal" },
-      ) // Use returning: 'minimal' for better performance
+      ) // 'minimal' for better performance
 
     if (error) {
       console.error("Error saving blog post to Supabase:", error)
@@ -336,7 +308,7 @@ async function fetchAndDisplayBlogPosts() {
 
   const { data: blogs, error } = await supabase
     .from("blogs")
-    .select("*")
+    .select()
     .eq("published", true) // Only fetch published posts for the frontend
     .order("created_at", { ascending: false }) // Order by newest first
 
@@ -369,9 +341,6 @@ async function fetchAndDisplayBlogPosts() {
       day: "numeric",
     })
 
-    // Ensure the content is safely rendered.
-    // The `prose` class should be sufficient if you have the @tailwindcss/typography plugin,
-    // otherwise, the custom styles in style.css will help.
     blogPostElement.innerHTML = `
             <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2">${blog.title}</h3>
             <p class="text-sm text-slate-500 mb-4">Published on: ${postDate}</p>
