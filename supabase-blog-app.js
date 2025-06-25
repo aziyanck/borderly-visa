@@ -5,8 +5,6 @@ const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5rcGZqYnBrY3FjYmZndmNidGdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA0MTI1ODMsImV4cCI6MjA2NTk4ODU4M30.lneP7rlhOMDT2D3rtHUMC9sUqOigMNEPHAx7lDWkYZI" // Paste your anon public key here
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
- 
-
 
 function displayMessage(elementId, message, isError = false) {
   const messageElement = document.getElementById(elementId)
@@ -23,7 +21,7 @@ function displayMessage(elementId, message, isError = false) {
         messageElement.classList.add("hidden")
         messageElement.textContent = ""
       }
-    }, 5000) 
+    }, 5000)
   }
 }
 
@@ -33,12 +31,12 @@ function redirectTo(path) {
 
 
 async function handleLogin(event) {
-  event.preventDefault() 
+  event.preventDefault()
 
   const emailInput = document.getElementById("email")
   const passwordInput = document.getElementById("password")
   const loginMessage = document.getElementById("login-message")
-  const loginButton = event.submitter 
+  const loginButton = event.submitter
 
   if (!emailInput || !passwordInput || !loginMessage || !loginButton) {
     console.error("Login form elements not found. Cannot proceed with login.")
@@ -57,26 +55,26 @@ async function handleLogin(event) {
     return
   }
 
-  loginButton.disabled = true 
+  loginButton.disabled = true
   loginButton.textContent = "Logging In..."
   displayMessage("login-message", "Attempting to log in...")
 
   try {
-  
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     })
 
     if (error) {
-      console.error("Supabase Login error:", error) 
+      console.error("Supabase Login error:", error)
       displayMessage(
         "login-message",
         `Login failed: ${error.message}. Please check your credentials.`,
         true,
       )
     } else if (data.user) {
-       
+
       displayMessage("login-message", "Login successful! Redirecting...", false)
       redirectTo("/admin/editor.html")
     } else {
@@ -95,29 +93,33 @@ async function handleLogin(event) {
       true,
     )
   } finally {
-    loginButton.disabled = false 
+    loginButton.disabled = false
     loginButton.textContent = "Log In"
   }
 }
 
 async function handleLogout() {
-   
+
   const { error } = await supabase.auth.signOut()
 
   if (error) {
     console.error("Supabase Logout error:", error.message)
-    alert("Failed to log out. Please try again.") 
+    // Avoid using alert() in modern web apps
+    const logoutButton = document.getElementById('logout-button');
+    if(logoutButton) {
+        logoutButton.textContent = "Logout failed";
+        setTimeout(() => { logoutButton.textContent = "Logout"; }, 2000);
+    }
   } else {
-     
     redirectTo("/")
   }
 }
 
 
-let quill 
+let quill
 
 async function initializeEditorPage() {
-   
+
   const {
     data: { session },
     error: sessionError,
@@ -130,35 +132,34 @@ async function initializeEditorPage() {
   }
 
   if (!session) {
-     
     redirectTo("/admin/admin.html")
     return
   }
-   
+
 
   quill = new Quill("#editor-container", {
-    theme: "snow", 
+    theme: "snow",
     placeholder: "Write your blog content here...",
     modules: {
       toolbar: [
-        ["bold", "italic", "underline", "strike"], 
+        ["bold", "italic", "underline", "strike"],
         ["blockquote", "code-block"],
-        [{ header: 1 }, { header: 2 }], 
+        [{ header: 1 }, { header: 2 }],
         [{ list: "ordered" }, { list: "bullet" }],
         [{ script: "sub" }, { script: "super" }],
-        [{ indent: "-1" }, { indent: "+1" }], 
-        [{ direction: "rtl" }], 
-        [{ size: ["small", false, "large", "huge"] }], 
+        [{ indent: "-1" }, { indent: "+1" }],
+        [{ direction: "rtl" }],
+        [{ size: ["small", false, "large", "huge"] }],
         [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        [{ color: [] }, { background: [] }], 
+        [{ color: [] }, { background: [] }],
         [{ font: [] }],
         [{ align: [] }],
-        ["link", "image", "video"], 
-        ["clean"], 
+        ["link", "image", "video"],
+        ["clean"],
       ],
     },
   })
-   
+
 
   document
     .getElementById("save-draft-button")
@@ -191,15 +192,15 @@ async function saveBlogPost(isPublished) {
     return
   }
 
-    if (
-      quill.getText().trim() === "" &&
-      quill.getContents().filter((op) => typeof op.insert === "object")
-        .length === 0
-    ) {
-      displayMessage("editor-message", "Blog content cannot be empty.", true)
-      return
-    }
-  
+  if (
+    quill.getText().trim() === "" &&
+    quill.getContents().filter((op) => typeof op.insert === "object")
+    .length === 0
+  ) {
+    displayMessage("editor-message", "Blog content cannot be empty.", true)
+    return
+  }
+
   saveButton.disabled = true
   saveButton.textContent = isPublished ? "Publishing..." : "Saving Draft..."
   displayMessage(
@@ -236,9 +237,8 @@ async function saveBlogPost(isPublished) {
             published: isPublished,
             author_id: user.id,
           },
-        ],
-        { returning: "minimal" },
-      ) 
+        ], { returning: "minimal" },
+      )
 
     if (error) {
       console.error("Error saving blog post to Supabase:", error)
@@ -248,14 +248,14 @@ async function saveBlogPost(isPublished) {
         true,
       )
     } else {
-       
+
       displayMessage(
         "editor-message",
         `Blog post ${isPublished ? "published" : "saved as draft"} successfully!`,
         false,
       )
       titleInput.value = ""
-      quill.setContents([]) 
+      quill.setContents([])
     }
   } catch (unexpectedError) {
     console.error("Unexpected error during blog save:", unexpectedError)
@@ -272,19 +272,18 @@ async function saveBlogPost(isPublished) {
 
 async function fetchAndDisplayBlogPosts() {
   const blogContainer = document.getElementById("blog-posts-container")
-   
+
   if (!blogContainer) {
-     
     return
   }
 
-  
+
   blogContainer.innerHTML = `
         <div class="col-span-full p-6 bg-white rounded-lg shadow-md flex items-center justify-center">
             <p class="text-slate-500">Loading blog posts...</p>
         </div>
     `
-   
+
 
   const { data: blogs, error } = await supabase
     .from("blogs")
@@ -300,77 +299,131 @@ async function fetchAndDisplayBlogPosts() {
   }
 
   if (blogs.length === 0) {
-     
+
     blogContainer.innerHTML =
       '<div class="col-span-full text-center py-8 text-slate-500">No blog posts published yet.</div>'
     return
   }
 
-   
-  blogContainer.innerHTML = "" 
+
+  blogContainer.innerHTML = ""
 
   blogs.forEach((blog) => {
-    const blogPostElement = document.createElement("div")
-    blogPostElement.classList.add("bg-white", "p-6", "rounded-lg", "shadow-md")
-    blogPostElement.setAttribute("data-aos", "fade-up") 
+    const blogPostLink = document.createElement("a");
+    blogPostLink.href = `/post.html?id=${blog.id}`;
+    blogPostLink.classList.add("bg-white", "p-6", "rounded-lg", "shadow-md", "block", "hover:shadow-xl", "transition-shadow");
+    blogPostLink.setAttribute("data-aos", "fade-up");
 
-  
     const postDate = new Date(blog.created_at).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
-    })
+    });
 
-    blogPostElement.innerHTML = `
+    // Get a text snippet from the content
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = blog.content;
+    const snippet = (tempDiv.textContent || "").substring(0, 120) + '...';
+
+    blogPostLink.innerHTML = `
             <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2">${blog.title}</h3>
             <p class="text-sm text-slate-500 mb-4">Published on: ${postDate}</p>
-            <div class="prose max-w-none text-slate-700 leading-relaxed">${blog.content}</div>
+            <div class="prose max-w-none text-slate-700 leading-relaxed">${snippet}</div>
         `
-    blogContainer.appendChild(blogPostElement)
+    blogContainer.appendChild(blogPostLink);
   })
-  AOS.refresh() 
+  AOS.refresh()
+}
+
+// NEW FUNCTION: Fetches and displays a single blog post
+async function fetchAndDisplaySinglePost() {
+    const postContainer = document.getElementById("single-post-container");
+    if (!postContainer) {
+        console.error("Single post container not found.");
+        return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const blogId = params.get('id');
+
+    if (!blogId) {
+        postContainer.innerHTML = '<p class="text-red-500 text-center">No blog post ID provided.</p>';
+        return;
+    }
+
+    postContainer.innerHTML = '<p class="text-slate-500 text-center">Loading post...</p>';
+
+    const { data: blog, error } = await supabase
+        .from('blogs')
+        .select('*')
+        .eq('id', blogId)
+        .eq('published', true)
+        .single(); // Use .single() to get one record
+
+    if (error || !blog) {
+        console.error("Error fetching single blog post:", error);
+        postContainer.innerHTML = '<p class="text-red-500 text-center">Could not find the requested blog post. It may not exist or has not been published.</p>';
+        return;
+    }
+
+    const postDate = new Date(blog.created_at).toLocaleDateString("en-US", {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    
+    document.title = `${blog.title} - Borderly Visa`;
+
+    postContainer.innerHTML = `
+        <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4">${blog.title}</h1>
+        <p class="text-md text-slate-500 mb-8">Published on: ${postDate}</p>
+        <div class="prose max-w-none text-slate-700 leading-relaxed">${blog.content}</div>
+    `;
 }
 
 
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname
-   
+
 
   if (currentPath.includes("/admin.html")) {
-     
+
     document
       .getElementById("login-form")
       ?.addEventListener("submit", handleLogin)
   } else if (currentPath.includes("/admin/editor.html")) {
-     
+
     initializeEditorPage()
   } else if (currentPath.includes("/blog.html")) {
-     
     AOS.init({
-      offset: 120,
-      duration: 600,
-      easing: "ease-in-out",
-      once: true,
-    })
-    fetchAndDisplayBlogPosts()
-  } else {
-     
-    const mobileMenuButton = document.getElementById("mobile-menu-button")
-    const mobileMenu = document.getElementById("mobile-menu")
-    const mobileMenuLinks = mobileMenu?.querySelectorAll("a")
+        offset: 120,
+        duration: 600,
+        easing: "ease-in-out",
+        once: true,
+    });
+    fetchAndDisplayBlogPosts();
+  } else if (currentPath.includes("/post.html")) {
+    // New route for single blog post page
+    fetchAndDisplaySinglePost();
+  } 
+  
+  // General logic for mobile menu, should run on all pages with the menu
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileMenuLinks = mobileMenu?.querySelectorAll("a");
 
-    if (mobileMenuButton) {
+  if (mobileMenuButton) {
       mobileMenuButton.addEventListener("click", () => {
-        mobileMenu?.classList.toggle("hidden")
-      })
-    }
-
-    mobileMenuLinks?.forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenu?.classList.add("hidden")
-      })
-    })
+          mobileMenu?.classList.toggle("hidden");
+      });
   }
+
+  mobileMenuLinks?.forEach((link) => {
+      link.addEventListener("click", () => {
+          mobileMenu?.classList.add("hidden");
+      });
+  });
+
 })
 
 export default supabase
