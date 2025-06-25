@@ -1,6 +1,7 @@
 {
   "name": "Borderly Visa Services",
   "short_name": "Borderly",
+  "version": "1.0.0",
   "description": "Borderly Visa offers immigration services with integrity, transparency, and professionalism.",
   "start_url": "/",
   "display": "standalone",
