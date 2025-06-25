@@ -355,7 +355,7 @@ async function fetchAndDisplaySinglePost() {
 
     const { data: blog, error } = await supabase
         .from('blogs')
-        .select('*')
+        .select()
         .eq('id', blogId)
         .eq('published', true)
         .single(); // Use .single() to get one record
