@@ -228,6 +228,12 @@ async function initializeCarousel() {
 
     // Clear loading/default state
     container.innerHTML = '';
+    AOS.init({
+        offset: 120,
+        duration: 600,
+        easing: 'ease-in-out',
+        once: true,
+    });
 
     blogs.forEach(blog => {
         const blogCard = document.createElement("div")
