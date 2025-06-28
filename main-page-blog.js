@@ -1,4 +1,4 @@
-import supabase from "./supabase-blog-app.js";
+import supabase from "./src/supabase-client.js";
 
 async function initializeCarousel() {
     const container = document.getElementById("carousel")
