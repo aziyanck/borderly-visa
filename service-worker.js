@@ -8,9 +8,11 @@ const urlsToCache = [
   '/blog.html',
   '/post.html',
   '/style.css',
-  '/main-page-blog.js',
-  '/script.js',
-  '/supabase-blog-app.js',
+  '/main.js',
+  '/src/auth.js',
+  '/src/blog-posts.js',
+  '/src/supabase-client.js',
+  '/src/ui.js',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap'
 ];
 
