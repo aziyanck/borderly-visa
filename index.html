@@ -20,10 +20,19 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script type="module" src="./main.js"></script>
 
-  
+  <style>
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
 
-<body class="text-slate-800">
+<body class="text-slate-800 overflow-x-hidden">
   <header class="bg-white shadow-sm sticky top-0 z-40">
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-3xl font-bold text-slate-900">
@@ -148,20 +157,19 @@
               Frustrated by the lack of genuine support and the
               pressure-driven sales tactics common in the industry, we decided
               it was time for a change. Borderly was created to offer a better
-              alternative &#8212; one built on trust, expertise, and a
+              alternative — one built on trust, expertise, and a
               seamless client experience.
             </p>
           </div>
           <div data-aos="fade-left">
-            
-          <!-- number count up -->
 
-          </div>
+            </div>
         </div>
       </section>
+    </div>
 
-  
-      <section id="blog-carousel" class="py-24 md:py-20 bg-slate-50 rounded-2xl">
+    <section id="blog-carousel">
+      <div class="container mx-auto px-4 py-24 md:py-20 bg-slate-50 rounded-2xl overflow-hidden">
         <div class="text-center mb-16" data-aos="fade-up">
           <span class="text-sm font-semibold text-slate-500 uppercase">OUR BLOG</span>
           <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">
@@ -173,27 +181,27 @@
         </div>
 
         <div class="relative" data-aos="fade-up">
-          <div id="carousel" class="flex space-x-8 w-screen overflow-x-scroll pb-6 -mx-6 px-6 scrollbar-hide">
-
+          <div id="carousel" class="flex space-x-8 pb-6 -mx-4 px-4 overflow-x-auto scrollbar-hide">
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="services" class="py-24 md:py-20">
+    <section id="services" class="py-24 md:py-20">
         <div class="text-center mb-16" data-aos="fade-up">
           <span class="text-sm font-semibold text-slate-500 uppercase">OUR SERVICES</span>
           <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">
             Your Gateway to the World
           </h2>
-          <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+          <p class="mt-4 p-6 text-slate-600 max-w-2xl mx-auto">
             We offer a wide range of visa and immigration services tailored to
             your needs.
           </p>
         </div>
 
-           <!-- Carousel Container -->
+        <!-- Carousel Container -->
         <div class="relative w-screen" data-aos="fade-up">
-          <div class="flex space-x-8 overflow-x-scroll pb-6 -mx-6 px-6 scrollbar-hide">
+          <div class="flex space-x-8 lg:justify-center overflow-x-scroll pb-6 mx-6 px-6 scrollbar-hide">
 
             <div class="flex-shrink-0 w-80 bg-white p-8 rounded-xl shadow-lg">
               <div class="flex items-center justify-center h-16 w-16 rounded-full bg-slate-100 mb-6">
@@ -277,8 +285,11 @@
         </div>
       </section>
 
-      <section id="features" class="py-24 md:py-20 bg-slate-100 rounded-2xl">
-        <div class="text-center" data-aos="fade-up">
+
+
+    <div class="container mx-auto px-6">
+      <section id="features" class="py-24 md:py-20 my-12 bg-slate-100 rounded-2xl">
+        <div class="text-center px-4" data-aos="fade-up">
           <span class="text-sm font-semibold text-slate-500 uppercase">WHY CHOOSE US</span>
           <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">
             A Client-First Approach
@@ -288,7 +299,7 @@
             immigration and non-immigration needs with clarity and confidence.
           </p>
         </div>
-        <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
           <div class="bg-white p-6 rounded-lg m-4 shadow-sm" data-aos="fade-up">
             <h3 class="text-lg font-bold text-slate-900">
               Experienced Documentation Team
@@ -351,7 +362,7 @@
           </div>
           <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-left">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.980620241031!2d76.3409470153351!3d10.01918389283738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d7c2a7a5f3d%3A0x7c7a52e1f5f5f5f5!2sPadamugal%20Juma%20Masjid!5e0!3m2!1sen!2sin!4v1676295325871!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.135701738771!2d76.33529207577549!3d10.00511477287719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080c9e8a881f3f%3A0x734a9b543788eb59!2sBORDERLY!5e0!3m2!1sen!2sin!4v1719574719601!5m2!1sen!2sin"
               width="100%" height="350" style="border: 0" allowfullscreen="" loading="lazy"
               referrerpolicy="no-referrer-when-downgrade" class="rounded-lg">
             </iframe>
@@ -372,15 +383,14 @@
         <a href="#contact" class="hover:text-white transition-colors">Contact</a>
       </div>
       <p class="mt-8 text-sm text-slate-400">
-        &copy; 2025 Borderly Visa. All rights reserved.
+        © 2025 Borderly Visa. All rights reserved.
       </p>
     </div>
   </footer>
 
-  <!-- whatsapp float -->
   <div class="fixed bottom-6 right-6 z-50">
     <a href="https://wa.me/9048955437" target="_blank" rel="noopener noreferrer"
-      class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110 animate-bounce-slow">
+      class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
 
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
         <path
@@ -388,6 +398,6 @@
       </svg>
     </a>
   </div>
-  </body>
+</body>
 
 </html>
