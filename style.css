@@ -12,14 +12,7 @@ h6 {
   font-family: "Lexend", "sans-serif";
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
 
 @keyframes bounce-slow {
 
