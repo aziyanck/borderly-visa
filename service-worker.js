@@ -13,7 +13,10 @@ const urlsToCache = [
   '/src/blog-posts.js',
   '/src/supabase-client.js',
   '/src/ui.js',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap'
+  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap',
+  'https://cdn.tailwindcss.com',
+  'https://unpkg.com/aos@2.3.1/dist/aos.css',
+  'https://unpkg.com/aos@2.3.1/dist/aos.js'
 ];
 
 // Install event: opens our cache and adds the core files to it
