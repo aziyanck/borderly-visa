@@ -140,54 +140,234 @@
     </header>
 
     <main class="container mx-auto px-6 py-12">
-        <section class="apply-form">
-            <h1 class="text-3xl font-bold text-slate-900">Apply for Your Visa</h1>
-            <p class="mt-4 text-slate-600">Fill out the form below to start your visa application process.</p>
-            <form id="visa-application-form" class="mt-8">
-                <div class="form-group">
-                    <label for="full-name" class="block text-sm font-medium text-slate-700">Full Name</label>
-                    <input type="text" id="full-name" name="full-name" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm">
-                </div>
-                <div class="form-group">
-                    <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
-                    <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm">
-                </div>
-                <div class="form-group">
-                    <label for="citizenship" class="block text-sm font-medium text-slate-700">Country of Citizenship</label>
-                    <input type="text" id="citizenship" name="citizenship" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm">
-                </div>
-                <div class="form-group">
-                    <label for="destination" class="block text-sm font-medium text-slate-700">Destination Country</label>
-                    <input type="text" id="destination" name="destination" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm">
-                </div>
-                <div class="form-group">
-                    <label for="purpose-of-visit" class="block text-sm font-medium text-slate-700">Purpose of Visit</label>
-                    <input type="text" id="purpose-of-visit" name="purpose-of-visit" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm">
-                </div>
-                <div class="form-group">
-                    <label for="travel-dates" class="block text-sm font-medium text-slate-700">Travel Dates</label>
-                    <input type="text" id="travel-dates" placeholder="01/06/2025 - 30/07/2025" name="travel-dates" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm">
-                </div>
-                <button type="submit" class="w-full bg-slate-900 text-white font-semibold px-5 py-3 rounded-lg hover:bg-slate-700 transition-colors">Submit Application</button>
-            </form>
+      <section class="apply-form">
+        <h1 class="text-3xl font-bold text-slate-900">Apply for Your Visa</h1>
+        <p class="mt-4 text-slate-600">
+          Fill out the form below to start your visa application process.
+        </p>
+        <form id="visa-application-form" class="mt-8">
+          <div class="form-group">
+            <label
+              for="full-name"
+              class="block text-sm font-medium text-slate-700"
+              >Full Name</label
+            >
+            <input
+              type="text"
+              id="full-name"
+              name="full-name"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email" class="block text-sm font-medium text-slate-700"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="citizenship"
+              class="block text-sm font-medium text-slate-700"
+              >Country of Citizenship</label
+            >
+            <input
+              type="text"
+              id="citizenship"
+              name="citizenship"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="destination"
+              class="block text-sm font-medium text-slate-700"
+              >Destination Country</label
+            >
+            <input
+              type="text"
+              id="destination"
+              name="destination"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="purpose-of-visit"
+              class="block text-sm font-medium text-slate-700"
+              >Purpose of Visit</label
+            >
+            <input
+              type="text"
+              id="purpose-of-visit"
+              name="purpose-of-visit"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="travel-dates"
+              class="block text-sm font-medium text-slate-700"
+              >Travel Dates</label
+            >
+            <input
+              type="text"
+              id="travel-dates"
+              placeholder="01/06/2025 - 30/07/2025"
+              name="travel-dates"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-slate-900 text-white font-semibold px-5 py-3 rounded-lg hover:bg-slate-700 transition-colors"
+          >
+            Submit Application
+          </button>
+        </form>
+
+        <section
+          id="document-upload-section"
+          class="mt-8"
+          style="display: none"
+        >
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">
+            Upload Your Documents
+          </h2>
+          <p class="mt-4 text-slate-600">
+            Please upload your passport and Aadhar card.
+          </p>
+          <div class="form-group mt-4">
+            <label
+              for="passport-file"
+              class="block text-sm font-medium text-slate-700"
+              >Passport</label
+            >
+            <input
+              type="file"
+              id="passport-file"
+              name="passport-file"
+              accept=".pdf,.jpg,.jpeg,.png"
+              class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-slate-50 file:text-slate-700 hover:file:bg-slate-100"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="aadhar-file"
+              class="block text-sm font-medium text-slate-700"
+              >Aadhar Card</label
+            >
+            <input
+              type="file"
+              id="aadhar-file"
+              name="aadhar-file"
+              accept=".pdf,.jpg,.jpeg,.png"
+              class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-slate-50 file:text-slate-700 hover:file:bg-slate-100"
+            />
+          </div>
+          <button
+            id="submit-documents-btn"
+            class="w-full bg-slate-900 text-white font-semibold px-5 py-3 rounded-lg hover:bg-slate-700 transition-colors"
+          >
+            Submit Documents
+          </button>
         </section>
+      </section>
     </main>
+
+    <script type="module">
+      import supabase from "./src/supabase-client.js"
+
+      const visaApplicationForm = document.getElementById(
+        "visa-application-form",
+      )
+      const documentUploadSection = document.getElementById(
+        "document-upload-section",
+      )
+      const submitDocumentsBtn = document.getElementById("submit-documents-btn")
+      const passportFile = document.getElementById("passport-file")
+      const aadharFile = document.getElementById("aadhar-file")
+
+      visaApplicationForm.addEventListener("submit", function (event) {
+        event.preventDefault()
+        visaApplicationForm.style.display = "none"
+        documentUploadSection.style.display = "block"
+      })
+
+      submitDocumentsBtn.addEventListener("click", async function () {
+        const passport = passportFile.files[0]
+        const aadhar = aadharFile.files[0]
+
+        if (!passport || !aadhar) {
+          alert("Please select both passport and Aadhar card files.")
+          return
+        }
+
+        try {
+          // Upload Passport
+          const { data: passportData, error: passportError } =
+            await supabase.storage
+              .from("visa-documents")
+              .upload(`passports/${Date.now()}_${passport.name}`, passport)
+
+          if (passportError) {
+            throw passportError
+          }
+
+          // Upload Aadhar
+          const { data: aadharData, error: aadharError } =
+            await supabase.storage
+              .from("visa-documents")
+              .upload(`aadhars/${Date.now()}_${aadhar.name}`, aadhar)
+
+          if (aadharError) {
+            throw aadharError
+          }
+
+          alert("Documents submitted successfully!")
+          // Optionally, hide the document upload section or redirect
+          documentUploadSection.style.display = "none"
+        } catch (error) {
+          alert("Error submitting documents: " + error.message)
+          console.error("Error submitting documents:", error)
+        }
+      })
+    </script>
 
     <footer class="bg-slate-900 text-slate-300">
       <div class="w-full py-12 text-center">
         <h2 class="text-2xl font-bold text-white">Borderly</h2>
         <div class="mt-6 flex justify-center flex-wrap gap-6">
-          <a href="index.html#about" class="hover:text-white transition-colors">About</a>
-          <a href="index.html#services" class="hover:text-white transition-colors"
+          <a href="index.html#about" class="hover:text-white transition-colors"
+            >About</a
+          >
+          <a
+            href="index.html#services"
+            class="hover:text-white transition-colors"
             >Services</a
           >
           <a href="blog.html" class="hover:text-white transition-colors"
             >Blog</a
           >
-          <a href="index.html#features" class="hover:text-white transition-colors"
+          <a
+            href="index.html#features"
+            class="hover:text-white transition-colors"
             >Features</a
           >
-          <a href="index.html#contact" class="hover:text-white transition-colors"
+          <a
+            href="index.html#contact"
+            class="hover:text-white transition-colors"
             >Contact</a
           >
           <a href="/policy.html" class="hover:text-white transition-colors"
