@@ -19,16 +19,6 @@
       rel="stylesheet"
     />
 
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
-    />
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="module" src="./main.js"></script>
 
@@ -40,14 +30,6 @@
       .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
-      }
-
-      .flickity-viewport {
-        height: 400px !important;
-      }
-
-      .flickity-slider > .w-full {
-        width: 33.33%;
       }
     </style>
   </head>
@@ -263,8 +245,8 @@
         </section>
       </div>
 
-      <section id="visa-selection" class="py-24 md:py-32">
-        <div class="container mx-auto px-6" data-aos="fade-up">
+      <section id="visa-selection" class="py-24 md:py-32" data-aos="fade-up">
+        <div class="container mx-auto px-6">
           <div class="text-center mb-16">
             <span class="text-sm font-semibold text-slate-500 uppercase"
               >SELECT YOUR DESTINATION</span
@@ -279,96 +261,182 @@
           </div>
 
           <div class="relative">
-            <div class="overflow-hidden">
-              <div class="flex" x-ref="carousel">
-                <div class="w-full md:w-1/3 px-4">
-                  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img
-                      src="https://placehold.co/600x400"
-                      alt="USA"
-                      class="w-full h-48 object-cover"
-                    />
-                    <div class="p-6">
-                      <h3 class="text-xl font-bold text-slate-900">
-                        United States
-                      </h3>
-                      <p class="mt-2 text-slate-600">
-                        From tourist visas to work permits, explore your options
-                        for visiting the USA.
-                      </p>
-                      <a
-                        href="apply.html"
-                        class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
-                        >Apply Now</a
-                      >
-                    </div>
+            <div
+              class="flex space-x-8 pb-6 -mx-4 px-4 overflow-x-auto scrollbar-hide"
+            >
+              <div class="flex-shrink-0 w-80">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="https://placehold.co/600x400"
+                    alt="USA"
+                    class="w-full h-48 object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-slate-900">
+                      United States
+                    </h3>
+                    <p class="mt-2 text-slate-600">
+                      From tourist visas to work permits, explore your options
+                      for visiting the USA.
+                    </p>
+                    <a
+                      href="apply.html"
+                      class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+                      >Apply Now</a
+                    >
                   </div>
                 </div>
-                <div class="w-full md:w-1/3 px-4">
-                  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img
-                      src="https://placehold.co/600x400"
-                      alt="Canada"
-                      class="w-full h-48 object-cover"
-                    />
-                    <div class="p-6">
-                      <h3 class="text-xl font-bold text-slate-900">Canada</h3>
-                      <p class="mt-2 text-slate-600">
-                        Discover the opportunities that await you in the Great
-                        White North.
-                      </p>
-                      <a
-                        href="apply.html"
-                        class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
-                        >Apply Now</a
-                      >
-                    </div>
+              </div>
+              <div class="flex-shrink-0 w-80">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="https://placehold.co/600x400"
+                    alt="Canada"
+                    class="w-full h-48 object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-slate-900">Canada</h3>
+                    <p class="mt-2 text-slate-600">
+                      Discover the opportunities that await you in the Great
+                      White North.
+                    </p>
+                    <a
+                      href="apply.html"
+                      class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+                      >Apply Now</a
+                    >
                   </div>
                 </div>
-                <div class="w-full md:w-1/3 px-4">
-                  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img
-                      src="https://placehold.co/600x400"
-                      alt="Australia"
-                      class="w-full h-48 object-cover"
-                    />
-                    <div class="p-6">
-                      <h3 class="text-xl font-bold text-slate-900">
-                        Australia
-                      </h3>
-                      <p class="mt-2 text-slate-600">
-                        Experience the land down under with a variety of visa
-                        options.
-                      </p>
-                      <a
-                        href="apply.html"
-                        class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
-                        >Apply Now</a
-                      >
-                    </div>
+              </div>
+              <div class="flex-shrink-0 w-80">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="https://placehold.co/600x400"
+                    alt="Australia"
+                    class="w-full h-48 object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-slate-900">
+                      Australia
+                    </h3>
+                    <p class="mt-2 text-slate-600">
+                      Experience the land down under with a variety of visa
+                      options.
+                    </p>
+                    <a
+                      href="apply.html"
+                      class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+                      >Apply Now</a
+                    >
                   </div>
                 </div>
-                <div class="w-full md:w-1/3 px-4">
-                  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img
-                      src="https://placehold.co/600x400"
-                      alt="United Kingdom"
-                      class="w-full h-48 object-cover"
-                    />
-                    <div class="p-6">
-                      <h3 class="text-xl font-bold text-slate-900">
-                        United Kingdom
-                      </h3>
-                      <p class="mt-2 text-slate-600">
-                        Explore the rich history and culture of the UK with a
-                        suitable visa.
-                      </p>
-                      <a
-                        href="apply.html"
-                        class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
-                        >Apply Now</a
-                      >
-                    </div>
+              </div>
+              <div class="flex-shrink-0 w-80">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="https://placehold.co/600x400"
+                    alt="United Kingdom"
+                    class="w-full h-48 object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-slate-900">
+                      United Kingdom
+                    </h3>
+                    <p class="mt-2 text-slate-600">
+                      Explore the rich history and culture of the UK with a
+                      suitable visa.
+                    </p>
+                    <a
+                      href="apply.html"
+                      class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+                      >Apply Now</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-80">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="https://placehold.co/600x400"
+                    alt="Germany"
+                    class="w-full h-48 object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-slate-900">Germany</h3>
+                    <p class="mt-2 text-slate-600">
+                      Explore the opportunities in Germany, a country known
+                      for its engineering and innovation.
+                    </p>
+                    <a
+                      href="apply.html"
+                      class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+                      >Apply Now</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-80">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="https://placehold.co/600x400"
+                    alt="France"
+                    class="w-full h-48 object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-slate-900">France</h3>
+                    <p class="mt-2 text-slate-600">
+                      Experience the art, culture, and cuisine of France with
+                      our visa assistance.
+                    </p>
+                    <a
+                      href="apply.html"
+                      class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+                      >Apply Now</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-80">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="https://placehold.co/600x400"
+                    alt="New Zealand"
+                    class="w-full h-48 object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-slate-900">
+                      New Zealand
+                    </h3>
+                    <p class="mt-2 text-slate-600">
+                      Discover the stunning landscapes and friendly culture of
+                      New Zealand.
+                    </p>
+                    <a
+                      href="apply.html"
+                      class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+                      >Apply Now</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex-shrink-0 w-80">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="https://placehold.co/600x400"
+                    alt="Ireland"
+                    class="w-full h-48 object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-slate-900">Ireland</h3>
+                    <p class="mt-2 text-slate-600">
+                      Experience the luck of the Irish with a visa to the
+                      Emerald Isle.
+                    </p>
+                    <a
+                      href="apply.html"
+                      class="mt-4 inline-block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+                      >Apply Now</a
+                    >
                   </div>
                 </div>
               </div>
