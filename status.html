@@ -44,11 +44,11 @@
 
     <main class="container mx-auto px-6 py-12">
       <section class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">
+        <h2 id="status-heading" class="text-3xl font-bold text-slate-900 mb-6 text-center">
           Application Status
         </h2>
-        <div id="status-container" class="space-y-4">
-          <p class="text-slate-500 text-center">Loading status...</p>
+        <div id="status-container" class="space-y-4 text-center">
+          <p class="text-slate-500">Loading status...</p>
         </div>
       </section>
     </main>
@@ -58,6 +58,7 @@
       import { redirectTo } from "./src/ui.js"
 
       const statusContainer = document.getElementById("status-container")
+      const statusHeading = document.getElementById("status-heading")
       const logoutButton = document.getElementById("logout-button")
 
       async function fetchStatus() {
@@ -76,30 +77,26 @@
 
         const { data, error } = await supabase
           .from("applications")
-          .select("status, created_at")
+          .select("full_name, status, created_at")
           .eq("user_id", user.id)
           .order("created_at", { ascending: false })
           .limit(1)
 
         if (error) {
           console.error("Error fetching status:", error)
-          statusContainer.innerHTML = `<p class="text-red-500 text-center">Error fetching status.</p>`
+          statusContainer.innerHTML = `<p class="text-red-500">Error fetching status.</p>`
           return
         }
 
         if (data && data.length > 0) {
           const application = data[0]
-          const applicationDate = new Date(
-            application.created_at
-          ).toLocaleDateString()
+          statusHeading.textContent = `${application.full_name}'s Application Status`
           statusContainer.innerHTML = `
-            <div class="p-4 bg-slate-100 rounded-md">
-              <p class="font-semibold">Status: <span class="font-normal text-slate-700">${application.status}</span></p>
-              <p class="font-semibold">Application Date: <span class="font-normal text-slate-700">${applicationDate}</span></p>
-            </div>
+            <p class="text-lg text-slate-700">Your application is <strong class="font-bold text-slate-900">${application.status}</strong>.</p>
           `
         } else {
-          statusContainer.innerHTML = `<p class="text-slate-500 text-center">No application found.</p>`
+          statusHeading.textContent = "No Application Found"
+          statusContainer.innerHTML = `<p class="text-slate-500">We could not find an application associated with your account.</p>`
         }
       }
 
