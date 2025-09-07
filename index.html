@@ -710,7 +710,84 @@
       id="overlay"
       class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
     ></div>
-    <div id="modal-container"></div>
+    <div id="modal-container">
+      <div
+        id="auth-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center"
+      >
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+          <div class="flex justify-between items-center mb-6">
+            <h2 id="modal-title" class="text-2xl font-bold text-slate-900">
+              Log In
+            </h2>
+            <button id="close-modal-button" class="text-slate-500 hover:text-slate-800">
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <form id="auth-form" class="space-y-4">
+            <div>
+              <label for="email" class="block text-sm font-medium text-slate-700"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                id="auth-email"
+                name="email"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <div>
+              <label
+                for="password"
+                class="block text-sm font-medium text-slate-700"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="auth-password"
+                name="password"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <p
+              id="auth-message"
+              class="text-center text-red-500 text-sm hidden"
+            ></p>
+            <button
+              type="submit"
+              id="auth-submit-button"
+              class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors"
+            >
+              Log In
+            </button>
+          </form>
+          <p class="mt-4 text-center text-sm text-slate-600">
+            <span id="auth-prompt-text">Don't have an account?</span>
+            <button
+              id="auth-toggle-button"
+              class="font-medium text-slate-900 hover:underline"
+            >
+              Sign Up
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
 
     <div class="fixed bottom-6 right-6 z-50">
       <a
