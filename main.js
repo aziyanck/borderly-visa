@@ -10,7 +10,7 @@ import { handleMobileMenu } from "./src/ui.js"
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname
 
-  if (currentPath.includes("/admin.html")) {
+  if (currentPath.includes("/admin/login.html")) {
     document
       .getElementById("login-form")
       ?.addEventListener("submit", handleLogin)
@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndDisplaySinglePost()
   } else if (currentPath === "/" || currentPath.includes("/index.html")) {
     initializeCarousel()
-  }
+  } else if (currentPath.includes("/apply.html")) {
+    // check if logged in
+  } 
 
   handleMobileMenu()
 })

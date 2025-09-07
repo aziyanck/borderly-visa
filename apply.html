@@ -246,7 +246,8 @@
             Upload Your Documents
           </h2>
           <p class="mt-4 text-slate-600">
-            Please upload your passport and Aadhar card.
+            Please upload your passport and Aadhar card (PDF). We use this info
+            to get you your visa.
           </p>
           <div class="form-group mt-4">
             <label
@@ -258,7 +259,7 @@
               type="file"
               id="passport-file"
               name="passport-file"
-              accept=".pdf,.jpg,.jpeg,.png"
+              accept=".pdf"
               class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-slate-50 file:text-slate-700 hover:file:bg-slate-100"
             />
           </div>
@@ -272,7 +273,7 @@
               type="file"
               id="aadhar-file"
               name="aadhar-file"
-              accept=".pdf,.jpg,.jpeg,.png"
+              accept=".pdf"
               class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-slate-50 file:text-slate-700 hover:file:bg-slate-100"
             />
           </div>
@@ -285,65 +286,6 @@
         </section>
       </section>
     </main>
-
-    <script type="module">
-      import supabase from "./src/supabase-client.js"
-
-      const visaApplicationForm = document.getElementById(
-        "visa-application-form",
-      )
-      const documentUploadSection = document.getElementById(
-        "document-upload-section",
-      )
-      const submitDocumentsBtn = document.getElementById("submit-documents-btn")
-      const passportFile = document.getElementById("passport-file")
-      const aadharFile = document.getElementById("aadhar-file")
-
-      visaApplicationForm.addEventListener("submit", function (event) {
-        event.preventDefault()
-        visaApplicationForm.style.display = "none"
-        documentUploadSection.style.display = "block"
-      })
-
-      submitDocumentsBtn.addEventListener("click", async function () {
-        const passport = passportFile.files[0]
-        const aadhar = aadharFile.files[0]
-
-        if (!passport || !aadhar) {
-          alert("Please select both passport and Aadhar card files.")
-          return
-        }
-
-        try {
-          // Upload Passport
-          const { data: passportData, error: passportError } =
-            await supabase.storage
-              .from("visa-documents")
-              .upload(`passports/${Date.now()}_${passport.name}`, passport)
-
-          if (passportError) {
-            throw passportError
-          }
-
-          // Upload Aadhar
-          const { data: aadharData, error: aadharError } =
-            await supabase.storage
-              .from("visa-documents")
-              .upload(`aadhars/${Date.now()}_${aadhar.name}`, aadhar)
-
-          if (aadharError) {
-            throw aadharError
-          }
-
-          alert("Documents submitted successfully!")
-          // Optionally, hide the document upload section or redirect
-          documentUploadSection.style.display = "none"
-        } catch (error) {
-          alert("Error submitting documents: " + error.message)
-          console.error("Error submitting documents:", error)
-        }
-      })
-    </script>
 
     <footer class="bg-slate-900 text-slate-300">
       <div class="w-full py-12 text-center">
@@ -384,7 +326,84 @@
       id="overlay"
       class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
     ></div>
-    <div id="modal-container"></div>
+    <div id="modal-container">
+      <div
+        id="auth-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center"
+      >
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+          <div class="flex justify-between items-center mb-6">
+            <h2 id="modal-title" class="text-2xl font-bold text-slate-900">
+              Log In
+            </h2>
+            <button id="close-modal-button" class="text-slate-500 hover:text-slate-800">
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <form id="auth-form" class="space-y-4">
+            <div>
+              <label for="email" class="block text-sm font-medium text-slate-700"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                id="auth-email"
+                name="email"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <div>
+              <label
+                for="password"
+                class="block text-sm font-medium text-slate-700"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="auth-password"
+                name="password"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <p
+              id="auth-message"
+              class="text-center text-red-500 text-sm hidden"
+            ></p>
+            <button
+              type="submit"
+              id="auth-submit-button"
+              class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors"
+            >
+              Log In
+            </button>
+          </form>
+          <p class="mt-4 text-center text-sm text-slate-600">
+            <span id="auth-prompt-text">Don't have an account?</span>
+            <button
+              id="auth-toggle-button"
+              class="font-medium text-slate-900 hover:underline"
+            >
+              Sign Up
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
 
     <div class="fixed bottom-6 right-6 z-50">
       <a
@@ -406,5 +425,96 @@
         </svg>
       </a>
     </div>
+
+    <script type="module">
+      import supabase from "./src/supabase-client.js"
+      import { redirectTo, showAuthModal } from "./src/ui.js"
+
+      const visaApplicationForm = document.getElementById(
+        "visa-application-form",
+      )
+      const documentUploadSection = document.getElementById(
+        "document-upload-section",
+      )
+      const submitDocumentsBtn = document.getElementById("submit-documents-btn")
+      const passportFile = document.getElementById("passport-file")
+      const aadharFile = document.getElementById("aadhar-file")
+      let applicationId
+
+      visaApplicationForm.addEventListener("submit", async function (event) {
+        event.preventDefault()
+
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
+        if (!user) {
+          showAuthModal()
+          return
+        }
+
+        const formData = new FormData(visaApplicationForm)
+        const applicationData = {
+          user_id: user.id,
+          full_name: formData.get("full-name"),
+          email: formData.get("email"),
+          citizenship: formData.get("citizenship"),
+          destination: formData.get("destination"),
+          purpose: formData.get("purpose-of-visit"),
+          travel_dates: formData.get("travel-dates"),
+          status: "Submitted",
+        }
+
+        const { data, error } = await supabase
+          .from("applications")
+          .insert([applicationData])
+          .select()
+
+        if (error) {
+          alert("Error submitting application: " + error.message)
+          return
+        }
+
+        applicationId = data[0].id
+        visaApplicationForm.style.display = "none"
+        documentUploadSection.style.display = "block"
+      })
+
+      submitDocumentsBtn.addEventListener("click", async function () {
+        const passport = passportFile.files[0]
+        const aadhar = aadharFile.files[0]
+
+        if (!passport || !aadhar) {
+          alert("Please select both passport and Aadhar card files.")
+          return
+        }
+
+        try {
+          // Upload Passport
+          const { data: passportData, error: passportError } =
+            await supabase.storage
+              .from("visa-documents")
+              .upload(`${applicationId}/passport.pdf`, passport)
+
+          if (passportError) {
+            throw passportError
+          }
+
+          // Upload Aadhar
+          const { data: aadharData, error: aadharError } =
+            await supabase.storage
+              .from("visa-documents")
+              .upload(`${applicationId}/aadhar.pdf`, aadhar)
+
+          if (aadharError) {
+            throw aadharError
+          }
+
+          redirectTo("/status.html")
+        } catch (error) {
+          alert("Error submitting documents: " + error.message)
+          console.error("Error submitting documents:", error)
+        }
+      })
+    </script>
   </body>
 </html>
