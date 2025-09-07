@@ -14,6 +14,10 @@ const documentModal = document.getElementById("document-modal")
 const closeModalButton = document.getElementById("close-modal-button")
 const documentLinksContainer = document.getElementById("document-links")
 
+// Notification elements
+const notificationPopup = document.getElementById("notification-popup")
+const notificationMessage = document.getElementById("notification-message")
+
 document.addEventListener("DOMContentLoaded", async () => {
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -74,7 +78,14 @@ async function fetchAndDisplayApplications() {
         <td class="px-6 py-4 whitespace-nowrap">${app.full_name}</td>
         <td class="px-6 py-4 whitespace-nowrap">${app.email}</td>
         <td class="px-6 py-4 whitespace-nowrap">${app.destination}</td>
-        <td class="px-6 py-4 whitespace-nowrap">${app.status}</td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <select data-appid="${app.id}" data-original-status="${app.status}" class="status-select bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <option ${app.status === 'Submitted' ? 'selected' : ''}>Submitted</option>
+            <option ${app.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+            <option ${app.status === 'Approved' ? 'selected' : ''}>Approved</option>
+            <option ${app.status === 'Rejected' ? 'selected' : ''}>Rejected</option>
+          </select>
+        </td>
         <td class="px-6 py-4 whitespace-nowrap">
           <button data-appid="${app.id}" class="view-documents-btn text-blue-600 hover:underline">View Documents</button>
         </td>
@@ -86,9 +97,58 @@ async function fetchAndDisplayApplications() {
       button.addEventListener("click", handleViewDocuments)
     })
 
+    document.querySelectorAll(".status-select").forEach(select => {
+      select.addEventListener("change", handleStatusUpdate)
+    })
+
   } catch (error) {
     console.error("Error fetching applications:", error)
     applicationsTableBody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-red-500">Error loading applications.</td></tr>`
+  }
+}
+
+async function handleStatusUpdate(event) {
+  const selectElement = event.target
+  const applicationId = selectElement.dataset.appid
+  const newStatus = selectElement.value
+  const originalStatus = selectElement.dataset.originalStatus
+
+  const confirmed = confirm(`Are you sure you want to change the status to "${newStatus}"?`)
+
+  if (!confirmed) {
+    selectElement.value = originalStatus // Revert the change
+    return
+  }
+
+  selectElement.disabled = true
+
+  try {
+    const { data, error } = await supabase
+      .from("applications")
+      .update({ status: newStatus })
+      .eq("id", applicationId)
+      .select() // Ask for the updated row back
+
+    if (error) {
+      // This catches network errors and some database errors
+      throw error
+    }
+
+    if (!data || data.length === 0) {
+      // This is the crucial check for RLS failures
+      throw new Error("Update failed. This may be due to row-level security policies.")
+    }
+
+    // Update the original status so reverting works correctly next time
+    selectElement.dataset.originalStatus = newStatus
+    showNotification("Status updated successfully!", false)
+
+  } catch (error) {
+    console.error("Error updating status:", error)
+    showNotification(error.message, true)
+    selectElement.value = originalStatus // Revert on failure
+  } finally {
+    selectElement.disabled = false
   }
 }
 
@@ -130,6 +190,30 @@ async function handleViewDocuments(event) {
     console.error("Error preparing document links:", error)
     documentLinksContainer.innerHTML = `<p class="text-red-500">Failed to load document links.</p>`
   }
+}
+
+function showNotification(message, isError = false) {
+  notificationMessage.textContent = message
+  notificationPopup.classList.remove("hidden", "bg-green-500", "bg-red-500", "translate-x-full")
+
+  if (isError) {
+    notificationPopup.classList.add("bg-red-500")
+  } else {
+    notificationPopup.classList.add("bg-green-500")
+  }
+
+  // Animate in
+  setTimeout(() => {
+    notificationPopup.classList.remove("translate-x-full")
+  }, 10)
+
+  // Hide after 3 seconds
+  setTimeout(() => {
+    notificationPopup.classList.add("translate-x-full")
+    setTimeout(() => {
+        notificationPopup.classList.add("hidden")
+    }, 300)
+  }, 3000)
 }
 
 function showAdminContent() {
