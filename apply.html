@@ -9,6 +9,10 @@
       name="description"
       content="Borderly Visa offers immigration services with integrity, transparency, and professionalism."
     />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
@@ -535,6 +539,38 @@
 
           if (aadharError) {
             throw aadharError
+          }
+
+          const {
+            data: { user },
+          } = await supabase.auth.getUser()
+
+          const { data: files, error: listError } = await supabase.storage
+            .from("visa-documents")
+            .list(`${applicationId}`)
+
+          if (listError) throw listError
+
+          for (const file of files) {
+            const { data: object, error: objectError } = await supabase.storage
+              .from("visa-documents")
+              .getPublicUrl(`${applicationId}/${file.name}`)
+
+            if (objectError) throw objectError
+
+            const objectId = object.publicUrl.split("/").slice(-1)[0]
+
+            const { error: insertError } = await supabase
+              .from("application_files")
+              .insert([
+                {
+                  object_id: objectId,
+                  application_id: applicationId,
+                  user_id: user.id,
+                },
+              ])
+
+            if (insertError) throw insertError
           }
 
           documentUploadSection.style.display = "none"
