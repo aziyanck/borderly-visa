@@ -521,8 +521,7 @@
         }
 
         try {
-          // Upload Passport
-          const { data: passportData, error: passportError } =
+          const { data: passportUploadData, error: passportError } =
             await supabase.storage
               .from("visa-documents")
               .upload(`${applicationId}/passport.pdf`, passport)
@@ -531,8 +530,7 @@
             throw passportError
           }
 
-          // Upload Aadhar
-          const { data: aadharData, error: aadharError } =
+          const { data: aadharUploadData, error: aadharError } =
             await supabase.storage
               .from("visa-documents")
               .upload(`${applicationId}/aadhar.pdf`, aadhar)
@@ -545,32 +543,25 @@
             data: { user },
           } = await supabase.auth.getUser()
 
-          const { data: files, error: listError } = await supabase.storage
-            .from("visa-documents")
-            .list(`${applicationId}`)
+          const applicationFiles = [
+            {
+              object_id: passportUploadData.id,
+              application_id: applicationId,
+              user_id: user.id,
+            },
+            {
+              object_id: aadharUploadData.id,
+              application_id: applicationId,
+              user_id: user.id,
+            },
+          ]
 
-          if (listError) throw listError
+          const { error: insertError } = await supabase
+            .from("application_files")
+            .insert(applicationFiles)
 
-          for (const file of files) {
-            const { data: object, error: objectError } = await supabase.storage
-              .from("visa-documents")
-              .getPublicUrl(`${applicationId}/${file.name}`)
-
-            if (objectError) throw objectError
-
-            const objectId = object.publicUrl.split("/").slice(-1)[0]
-
-            const { error: insertError } = await supabase
-              .from("application_files")
-              .insert([
-                {
-                  object_id: objectId,
-                  application_id: applicationId,
-                  user_id: user.id,
-                },
-              ])
-
-            if (insertError) throw insertError
+          if (insertError) {
+            throw insertError
           }
 
           documentUploadSection.style.display = "none"
