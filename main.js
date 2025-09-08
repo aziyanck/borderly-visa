@@ -13,16 +13,28 @@ async function updateUserStatus() {
   const userInfo = document.getElementById("user-info")
   const loginButton = document.getElementById("login-button")
   const logoutButton = document.getElementById("logout-button")
+  const mobileUserInfo = document.getElementById("mobile-user-info")
+  const mobileLoginButton = document.getElementById("mobile-login-button")
+  const mobileLogoutButton = document.getElementById("mobile-logout-button")
 
   if (user) {
     userInfo.textContent = user.email
     userInfo.classList.remove("hidden")
     logoutButton.classList.remove("hidden")
     loginButton.classList.add("hidden")
+
+    mobileUserInfo.textContent = user.email
+    mobileUserInfo.classList.remove("hidden")
+    mobileLogoutButton.classList.remove("hidden")
+    mobileLoginButton.classList.add("hidden")
   } else {
     userInfo.classList.add("hidden")
     logoutButton.classList.add("hidden")
     loginButton.classList.remove("hidden")
+
+    mobileUserInfo.classList.add("hidden")
+    mobileLogoutButton.classList.add("hidden")
+    mobileLoginButton.classList.remove("hidden")
   }
 }
 
@@ -53,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUserStatus()
     document.getElementById("login-button")?.addEventListener("click", () => showAuthModal(updateUserStatus))
     document.getElementById("logout-button")?.addEventListener("click", handleLogout)
+    document.getElementById("mobile-login-button")?.addEventListener("click", () => showAuthModal(updateUserStatus))
+    document.getElementById("mobile-logout-button")?.addEventListener("click", handleLogout)
   } else if (currentPath.includes("/apply.html")) {
     // check if logged in
   } 
