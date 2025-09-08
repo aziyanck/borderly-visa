@@ -40,7 +40,7 @@ function handleMobileMenu() {
   });
 }
 
-async function showAuthModal() {
+async function showAuthModal(updateUserStatus) {
   const authModal = document.getElementById("auth-modal")
   const closeModalButton = document.getElementById("close-modal-button")
   const authForm = document.getElementById("auth-form")
@@ -92,7 +92,10 @@ async function showAuthModal() {
           displayMessage("auth-message", error.message, true)
         }
       } else if (data.user) {
-        redirectTo("/apply.html")
+        authModal.classList.add("hidden")
+        if (updateUserStatus) {
+          updateUserStatus()
+        }
       }
     } else {
       const { data, error } = await supabase.auth.signUp({ email, password })
