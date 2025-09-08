@@ -72,12 +72,11 @@
             >Contact</a
           >
         </div>
-        <a
-          href="#contact"
-          class="hidden md:block bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors"
-        >
-          Get a Consultation
-        </a>
+        <div id="user-cta" class="hidden md:flex items-center space-x-4">
+          <span id="user-info" class="text-slate-600 font-semibold hidden"></span>
+          <button id="logout-button" class="bg-red-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-red-600 transition-colors hidden">Logout</button>
+          <button id="login-button" class="bg-slate-900 text-white font-semibold px-5 py-2 rounded-lg hover:bg-slate-700 transition-colors">Login</button>
+        </div>
 
         <div class="md:hidden">
           <button
