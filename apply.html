@@ -141,101 +141,103 @@
 
     <main class="container mx-auto px-6 py-12">
       <section class="apply-form">
-        <h1 class="text-3xl font-bold text-slate-900">Apply for Your Visa</h1>
-        <p class="mt-4 text-slate-600">
-          Fill out the form below to start your visa application process.
-        </p>
-        <form id="visa-application-form" class="mt-8">
-          <div class="form-group">
-            <label
-              for="full-name"
-              class="block text-sm font-medium text-slate-700"
-              >Full Name</label
+        <div id="initial-form-section">
+          <h1 class="text-3xl font-bold text-slate-900">Apply for Your Visa</h1>
+          <p class="mt-4 text-slate-600">
+            Fill out the form below to start your visa application process.
+          </p>
+          <form id="visa-application-form" class="mt-8">
+            <div class="form-group">
+              <label
+                for="full-name"
+                class="block text-sm font-medium text-slate-700"
+                >Full Name</label
+              >
+              <input
+                type="text"
+                id="full-name"
+                name="full-name"
+                required
+                class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email" class="block text-sm font-medium text-slate-700"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <div class="form-group">
+              <label
+                for="citizenship"
+                class="block text-sm font-medium text-slate-700"
+                >Country of Citizenship</label
+              >
+              <input
+                type="text"
+                id="citizenship"
+                name="citizenship"
+                required
+                class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <div class="form-group">
+              <label
+                for="destination"
+                class="block text-sm font-medium text-slate-700"
+                >Destination Country</label
+              >
+              <input
+                type="text"
+                id="destination"
+                name="destination"
+                required
+                class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <div class="form-group">
+              <label
+                for="purpose-of-visit"
+                class="block text-sm font-medium text-slate-700"
+                >Purpose of Visit</label
+              >
+              <input
+                type="text"
+                id="purpose-of-visit"
+                name="purpose-of-visit"
+                required
+                class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <div class="form-group">
+              <label
+                for="travel-dates"
+                class="block text-sm font-medium text-slate-700"
+                >Travel Dates</label
+              >
+              <input
+                type="text"
+                id="travel-dates"
+                placeholder="01/06/2025 - 30/07/2025"
+                name="travel-dates"
+                required
+                class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-slate-900 text-white font-semibold px-5 py-3 rounded-lg hover:bg-slate-700 transition-colors"
             >
-            <input
-              type="text"
-              id="full-name"
-              name="full-name"
-              required
-              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
-            />
-          </div>
-          <div class="form-group">
-            <label for="email" class="block text-sm font-medium text-slate-700"
-              >Email</label
-            >
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
-            />
-          </div>
-          <div class="form-group">
-            <label
-              for="citizenship"
-              class="block text-sm font-medium text-slate-700"
-              >Country of Citizenship</label
-            >
-            <input
-              type="text"
-              id="citizenship"
-              name="citizenship"
-              required
-              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
-            />
-          </div>
-          <div class="form-group">
-            <label
-              for="destination"
-              class="block text-sm font-medium text-slate-700"
-              >Destination Country</label
-            >
-            <input
-              type="text"
-              id="destination"
-              name="destination"
-              required
-              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
-            />
-          </div>
-          <div class="form-group">
-            <label
-              for="purpose-of-visit"
-              class="block text-sm font-medium text-slate-700"
-              >Purpose of Visit</label
-            >
-            <input
-              type="text"
-              id="purpose-of-visit"
-              name="purpose-of-visit"
-              required
-              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
-            />
-          </div>
-          <div class="form-group">
-            <label
-              for="travel-dates"
-              class="block text-sm font-medium text-slate-700"
-              >Travel Dates</label
-            >
-            <input
-              type="text"
-              id="travel-dates"
-              placeholder="01/06/2025 - 30/07/2025"
-              name="travel-dates"
-              required
-              class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
-            />
-          </div>
-          <button
-            type="submit"
-            class="w-full bg-slate-900 text-white font-semibold px-5 py-3 rounded-lg hover:bg-slate-700 transition-colors"
-          >
-            Submit Application
-          </button>
-        </form>
+              Submit Application
+            </button>
+          </form>
+        </div>
 
         <section
           id="document-upload-section"
@@ -282,6 +284,29 @@
             class="w-full bg-slate-900 text-white font-semibold px-5 py-3 rounded-lg hover:bg-slate-700 transition-colors"
           >
             Submit Documents
+          </button>
+        </section>
+
+        <section id="payment-section" class="mt-8" style="display: none">
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">
+            Complete Your Payment
+          </h2>
+          <p class="mt-4 text-slate-600">
+            Please complete the payment to finalize your application.
+          </p>
+          <div class="mt-6 flex justify-center">
+            <a
+              href="upi://pay?pa=simonbijuthumbeparambil-2@okhdfcbank&pn=borderlyvisa&am=5500&cu=INR"
+              class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+            >
+              Pay Now
+            </a>
+          </div>
+          <button
+            id="payment-continue-btn"
+            class="mt-4 w-full bg-slate-900 text-white font-semibold px-5 py-3 rounded-lg hover:bg-slate-700 transition-colors"
+          >
+            Continue
           </button>
         </section>
       </section>
@@ -433,10 +458,13 @@
       const visaApplicationForm = document.getElementById(
         "visa-application-form",
       )
+      const initialFormSection = document.getElementById("initial-form-section")
       const documentUploadSection = document.getElementById(
         "document-upload-section",
       )
+      const paymentSection = document.getElementById("payment-section")
       const submitDocumentsBtn = document.getElementById("submit-documents-btn")
+      const paymentContinueBtn = document.getElementById("payment-continue-btn")
       const passportFile = document.getElementById("passport-file")
       const aadharFile = document.getElementById("aadhar-file")
       let applicationId
@@ -475,7 +503,7 @@
         }
 
         applicationId = data[0].id
-        visaApplicationForm.style.display = "none"
+        initialFormSection.style.display = "none"
         documentUploadSection.style.display = "block"
       })
 
@@ -509,11 +537,16 @@
             throw aadharError
           }
 
-          redirectTo("/status.html")
+          documentUploadSection.style.display = "none"
+          paymentSection.style.display = "block"
         } catch (error) {
           alert("Error submitting documents: " + error.message)
           console.error("Error submitting documents:", error)
         }
+      })
+
+      paymentContinueBtn.addEventListener("click", function () {
+        redirectTo("/status.html")
       })
     </script>
   </body>
