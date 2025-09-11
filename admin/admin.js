@@ -158,38 +158,32 @@ async function handleViewDocuments(event) {
   documentModal.classList.remove("hidden")
 
   try {
-    const { data: applicationFiles, error: applicationFilesError } = await supabase
-      .from("application_files")
-      .select("object_id")
-      .eq("application_id", applicationId)
+    const { data: files, error: listError } = await supabase.storage
+      .from("visa-documents")
+      .list(applicationId, { limit: 100 })
 
-    if (applicationFilesError) throw applicationFilesError
+    if (listError) throw listError
 
-    if (!applicationFiles || applicationFiles.length === 0) {
+    if (!files || files.length === 0) {
       documentLinksContainer.innerHTML = "<p>No documents found for this application.</p>"
       return
     }
 
     documentLinksContainer.innerHTML = ""
 
-    for (const applicationFile of applicationFiles) {
-      const { data: object, error: objectError } = await supabase.storage
-        .from("visa-documents")
-        .select("name")
-        .eq("id", applicationFile.object_id)
-        .single()
-
-      if (objectError) throw objectError
-
+    for (const file of files) {
       const { data, error: urlError } = await supabase.storage
         .from("visa-documents")
-        .createSignedUrl(`${applicationId}/${object.name}`, 60) // URL valid for 60 seconds
+        .createSignedUrl(`${applicationId}/${file.name}`, 60) // URL valid for 60 seconds
 
-      if (urlError) throw urlError
+      if (urlError) {
+        console.error(`Error creating signed URL for ${file.name}:`, urlError)
+        continue // Skip to the next file
+      }
 
       const link = document.createElement("a")
       link.href = data.signedUrl
-      link.textContent = `View ${object.name}`
+      link.textContent = `View ${file.name}`
       link.target = "_blank"
       link.rel = "noopener noreferrer"
       link.className = "block text-blue-600 hover:underline"
