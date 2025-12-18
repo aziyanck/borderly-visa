@@ -60,7 +60,7 @@ function HomePage() {
                 <section className="relative min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center text-white overflow-hidden">
                     {/* Background Image */}
                     <img
-                        src="/src/39330.jpg"
+                        src="39330.jpg"
                         alt="Immigration Services"
                         className="absolute inset-0 w-full h-full object-cover"
                     />
