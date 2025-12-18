@@ -118,7 +118,7 @@ function AppRoutes() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/borderly-visa">
       <AuthProvider>
         <ApplicationProvider>
           <AppRoutes />
