@@ -1,1 +1,1 @@
-/* Remove default App.css as we're using Tailwind */
+@import "tailwindcss";
