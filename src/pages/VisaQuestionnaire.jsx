@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Info } from 'lucide-react';
 import bgQn from '../assets/bg-qn.png';
@@ -16,6 +16,15 @@ const VisaQuestionnaire = () => {
         schengenHistory: '',
         maritalStatus: ''
     });
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        if (showPopup) {
+            setTimeout(() => {
+                window.location.href = 'https://wa.me/8089929437';
+            }, 3000);
+        }
+    }, [showPopup]);
 
     const questions = [
         {
@@ -60,7 +69,7 @@ const VisaQuestionnaire = () => {
         } else {
             // Finished
             console.log('Form Finished:', { ...formData, [currentQuestion.id]: value });
-            alert("Questionnaire Completed! (This is a placeholder)");
+            setShowPopup(true);
         }
     };
 
@@ -82,6 +91,15 @@ const VisaQuestionnaire = () => {
         >
             {/* Overlay for readability if needed, though design seems to rely on the image */}
             <div className="absolute inset-0 bg-black/20"></div>
+
+            {showPopup && (
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20 p-4">
+                    <div className="w-full max-w-sm rounded-2xl backdrop-blur-lg border border-white/30 bg-white/20 text-white font-medium text-lg shadow-lg text-center p-8">
+                        <h2 className="text-3xl font-bold mb-4">Expert Assigned!</h2>
+                        <p className="text-base">An expert has been auto assigned for you.</p>
+                    </div>
+                </div>
+            )}
 
             <div className="relative z-10 flex flex-col h-full min-h-screen px-6 py-6 transition-all duration-300">
 
