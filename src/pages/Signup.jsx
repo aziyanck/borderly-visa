@@ -15,9 +15,7 @@ const Signup = () => {
                         <p>Signup functionality coming soon.</p>
                     </div>
 
-                    <div className="text-center text-xs text-gray-500 mt-4">
-                        Already have an account <Link to="/login" className="text-black font-bold underline cursor-pointer">Login</Link>
-                    </div>
+
                 </div>
             </div>
         </div>
