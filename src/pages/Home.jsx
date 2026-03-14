@@ -108,6 +108,13 @@ const Home = () => {
                             <ChevronRight className="h-5 w-5 text-gray-400" />
                         </div>
                     ))}
+                    <div 
+                        className="flex justify-between items-center py-2 border-b border-gray-50 cursor-pointer hover:bg-gray-50 transition-colors"
+                        onClick={() => navigate('/ticket-upload')}
+                    >
+                        <span className="text-blue-600 font-medium">Upload Ticket PDF</span>
+                        <ChevronRight className="h-5 w-5 text-blue-400" />
+                    </div>
                 </div>
 
                 {/* FAQ Section */}

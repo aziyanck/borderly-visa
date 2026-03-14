@@ -4,6 +4,7 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import VisaDetails from './pages/VisaDetails';
 import VisaQuestionnaire from './pages/VisaQuestionnaire';
+import TicketUpload from './pages/TicketUpload';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/visa/:countryName" element={<VisaDetails />} />
             <Route path="/visa/:countryName/questions" element={<VisaQuestionnaire />} />
+            <Route path="/ticket-upload" element={<TicketUpload />} />
           </Routes>
         </Router>
       </div>

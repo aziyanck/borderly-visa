@@ -13,10 +13,12 @@
     "@fontsource/dancing-script": "^5.2.8",
     "@tailwindcss/vite": "^4.1.18",
     "lucide-react": "^0.562.0",
+    "pdfjs-dist": "^5.5.207",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.11.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
